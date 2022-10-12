@@ -23,4 +23,63 @@
 /* Secondary colours for other elements and background */
 /* mobile media query */
 /* tablet media query */
-/* desktop media query *//*# sourceMappingURL=bio.css.map */
+/* desktop media query */
+.header {
+  background-color: #323232;
+}
+
+.logo-section {
+  padding: 1rem 1rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  max-width: 7.5rem;
+  max-height: 1.25rem;
+}
+
+.header__nav {
+  list-style-type: none;
+  display: flex;
+  margin-left: -2.5rem;
+}
+
+.header__nav-section {
+  width: 100%;
+  padding-bottom: 0.625rem;
+  display: flex;
+  justify-content: center;
+}
+
+.header__nav-section--active {
+  border-bottom: 3px solid #ffffff;
+}
+
+.header__nav-item {
+  font-size: 0.8125rem;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.header__nav-item--active {
+  font-weight: 600;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: "Avenir Next";
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+ul {
+  margin: 0;
+}/*# sourceMappingURL=bio.css.map */

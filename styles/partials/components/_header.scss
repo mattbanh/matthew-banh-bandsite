@@ -1,0 +1,39 @@
+@use "../fonts";
+@use "../colors" as colors;
+@use "../breakpoints" as breakpoints;
+
+.header {
+  background-color: colors.$primary-dark;
+}
+.logo-section {
+  padding: 1rem 1rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  max-width: 7.5rem;
+  max-height: 1.25rem;
+}
+.header__nav {
+  list-style-type: none;
+  display: flex;
+  margin-left: -2.5rem;
+}
+.header__nav-section {
+  width: 100%;
+  padding-bottom: 0.625rem;
+  display: flex;
+  justify-content: center;
+}
+.header__nav-section--active {
+  border-bottom: 3px solid colors.$primary-white;
+}
+.header__nav-item {
+  font-size: 0.8125rem;
+  text-decoration: none;
+  color: colors.$primary-white;
+}
+.header__nav-item--active {
+  font-weight: 600;
+}
