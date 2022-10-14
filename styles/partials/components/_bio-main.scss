@@ -2,6 +2,10 @@
 @use "../colors" as colors;
 @use "../breakpoints" as breakpoints;
 
+/* CSS for main section of bandsite bio page */
+
+/* mobile version below until media query for tablet */
+/* hero section */
 .bio-hero {
   height: 11.5rem;
   background: center / cover no-repeat url(../../../assets/images/hero-bio.jpg);
@@ -20,8 +24,49 @@
     color: colors.$primary-white;
   }
 }
+/* main bio section */
+.bio {
+  margin: 1rem;
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  &__subheader {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  &__image {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+    object-position: bottom;
+    margin-bottom: 0.5rem;
+  }
+}
+.bio-quote {
+  margin-bottom: 1.5rem;
+  &__quote,
+  &__quote-author {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.375rem;
+    margin-bottom: 0.25rem;
+  }
+}
+.bio-description {
+  padding-right: 0.45rem;
+  &__description {
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+}
 
+/* media query for tablet */
 @include breakpoints.medium {
+  /* hero section */
   .bio-hero {
     height: 27.75rem;
     &__title {
@@ -29,13 +74,80 @@
       font-size: 3.625rem;
     }
   }
+  /* main bio section */
+  .bio {
+    margin: 3rem 2.25rem 1rem;
+    &__title {
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+    }
+    &__subheader {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    &__image {
+      height: 19.25rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+  .bio-main {
+    margin: 0 3.75rem;
+  }
+  .bio-quote {
+    margin-bottom: 3.125rem;
+    &__quote {
+      font-size: 1.375rem;
+      line-height: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    &__quote-author {
+      font-size: 1rem;
+    }
+  }
+  .bio-description {
+    padding-right: 0;
+    &__container {
+      column-count: 2;
+      column-gap: 1.5rem;
+    }
+    &__description {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+  }
 }
 
 @include breakpoints.large {
+  /* hero section */
   .bio-hero {
     height: 39.375rem;
     &__title {
       margin: 0 8.125rem;
+    }
+  }
+  /* main bio section */
+  .bio {
+    margin: 3rem 8.125rem 1rem;
+    &__title {
+      margin-bottom: 2.375rem;
+    }
+    &__subheader {
+      margin-bottom: 1.5rem;
+    }
+    &__image {
+      height: 28.25rem;
+      margin-bottom: 1.625rem;
+    }
+  }
+  .bio-main {
+    margin: 0 5.5rem;
+  }
+  .bio-quote {
+    margin-bottom: 3rem;
+    width: 80%;
+    &__quote {
+      font-size: 1.425rem;
+      margin-bottom: 1rem;
     }
   }
 }

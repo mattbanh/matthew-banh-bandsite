@@ -2,6 +2,8 @@
 @use "../colors" as colors;
 @use "../breakpoints" as breakpoints;
 
+/* css for header and navigation */
+/* mobile version below until media query for tablet */
 .header {
   background-color: colors.$primary-dark;
 }

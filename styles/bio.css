@@ -24,6 +24,8 @@
 /* mobile media query */
 /* tablet media query */
 /* desktop media query */
+/* css for header and navigation */
+/* mobile version below until media query for tablet */
 .header {
   background-color: #323232;
 }
@@ -110,6 +112,9 @@
     margin-right: 2rem;
   }
 }
+/* CSS for main section of bandsite bio page */
+/* mobile version below until media query for tablet */
+/* hero section */
 .bio-hero {
   height: 11.5rem;
   background: center/cover no-repeat url(../../../assets/images/hero-bio.jpg);
@@ -128,7 +133,52 @@
   color: #ffffff;
 }
 
+/* main bio section */
+.bio {
+  margin: 1rem;
+}
+.bio__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.bio__subheader {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.bio__image {
+  width: 100%;
+  height: 10rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: bottom;
+     object-position: bottom;
+  margin-bottom: 0.5rem;
+}
+
+.bio-quote {
+  margin-bottom: 1.5rem;
+}
+.bio-quote__quote, .bio-quote__quote-author {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.375rem;
+  margin-bottom: 0.25rem;
+}
+
+.bio-description {
+  padding-right: 0.45rem;
+}
+.bio-description__description {
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+/* media query for tablet */
 @media only screen and (min-width: 768px) {
+  /* hero section */
   .bio-hero {
     height: 27.75rem;
   }
@@ -136,13 +186,82 @@
     margin: 0 2.25rem;
     font-size: 3.625rem;
   }
+  /* main bio section */
+  .bio {
+    margin: 3rem 2.25rem 1rem;
+  }
+  .bio__title {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .bio__subheader {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .bio__image {
+    height: 19.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .bio-main {
+    margin: 0 3.75rem;
+  }
+  .bio-quote {
+    margin-bottom: 3.125rem;
+  }
+  .bio-quote__quote {
+    font-size: 1.375rem;
+    line-height: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .bio-quote__quote-author {
+    font-size: 1rem;
+  }
+  .bio-description {
+    padding-right: 0;
+  }
+  .bio-description__container {
+    -moz-column-count: 2;
+         column-count: 2;
+    -moz-column-gap: 1.5rem;
+         column-gap: 1.5rem;
+  }
+  .bio-description__description {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
 }
 @media only screen and (min-width: 1280px) {
+  /* hero section */
   .bio-hero {
     height: 39.375rem;
   }
   .bio-hero__title {
     margin: 0 8.125rem;
+  }
+  /* main bio section */
+  .bio {
+    margin: 3rem 8.125rem 1rem;
+  }
+  .bio__title {
+    margin-bottom: 2.375rem;
+  }
+  .bio__subheader {
+    margin-bottom: 1.5rem;
+  }
+  .bio__image {
+    height: 28.25rem;
+    margin-bottom: 1.625rem;
+  }
+  .bio-main {
+    margin: 0 5.5rem;
+  }
+  .bio-quote {
+    margin-bottom: 3rem;
+    width: 80%;
+  }
+  .bio-quote__quote {
+    font-size: 1.425rem;
+    margin-bottom: 1rem;
   }
 }
 html,
@@ -160,7 +279,9 @@ body {
 
 h1,
 h2,
-a {
+h3,
+a,
+p {
   margin: 0;
 }
 
