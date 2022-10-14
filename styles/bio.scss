@@ -1,3 +1,30 @@
 @use "./partials/fonts";
-@use "./partials/colors";
+@use "./partials/colors" as colors;
 @use "./partials/breakpoints";
+@use "./partials/components/header";
+@use "./partials/components/bio-main";
+
+html,
+body {
+  margin: 0;
+  font-family: "Avenir Next";
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+a,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}

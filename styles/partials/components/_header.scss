@@ -1,0 +1,95 @@
+@use "../fonts";
+@use "../colors" as colors;
+@use "../breakpoints" as breakpoints;
+
+/* css for header and navigation */
+/* mobile version below until media query for tablet */
+.header {
+  background-color: colors.$primary-dark;
+}
+.header-logo {
+  padding: 1rem 0 0;
+  margin: 0 1rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__logo {
+    max-width: 7.5rem;
+    max-height: 1.25rem;
+  }
+}
+.header-nav {
+  &__list {
+    height: 100%;
+    list-style-type: none;
+    display: flex;
+    margin-left: -2.5rem;
+  }
+  &__section {
+    width: 100%;
+    padding-bottom: 0.625rem;
+    border-bottom: 3px solid transparent;
+    transition: 0.15s;
+    &--active {
+      color: colors.$primary-white;
+      font-weight: 600;
+      border-bottom: 3px solid colors.$primary-white;
+    }
+    &:hover {
+      color: colors.$primary-white;
+      font-weight: 600;
+      border-bottom: 3px solid colors.$primary-white;
+    }
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    color: colors.$secondary-grey;
+  }
+}
+
+/* media query for tablet */
+@include breakpoints.medium {
+  .header {
+    display: flex;
+    justify-content: baseline;
+  }
+  .header-logo {
+    padding: 0;
+    margin: 1.375rem 4rem 1.375rem 2.25rem;
+    &__logo {
+      max-width: 7.5rem;
+      max-height: 1.25rem;
+    }
+  }
+  .header-nav {
+    &__section {
+      margin-right: 3.375rem;
+      align-items: center;
+      padding-bottom: 0rem;
+      &--active {
+        border-bottom-width: 4px;
+      }
+      &:hover {
+        border-bottom-width: 4px;
+      }
+    }
+    &__item {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+/* media query for desktop */
+@include breakpoints.large {
+  .header-logo {
+    margin: 1.875rem 3.75rem 1.875rem 8.125rem;
+  }
+  .header-nav__section {
+    margin-right: 2rem;
+  }
+}
