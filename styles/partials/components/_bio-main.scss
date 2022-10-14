@@ -26,7 +26,7 @@
 }
 /* main bio section */
 .bio {
-  margin: 1rem;
+  padding: 1rem 1rem 0 1rem;
   &__title {
     font-size: 1.5rem;
     font-weight: 600;
@@ -63,8 +63,25 @@
     margin-bottom: 1rem;
   }
 }
+.photo-gallery {
+  padding: 1.5rem 1rem 1rem;
+  background-color: colors.$secondary-white;
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  &__gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  &__image {
+    width: 100%;
+  }
+}
 
-/* media query for tablet */
+/* MEDIA QUERY FOR TABLET */
 @include breakpoints.medium {
   /* hero section */
   .bio-hero {
@@ -115,6 +132,26 @@
       line-height: 1.375rem;
     }
   }
+  .photo-gallery {
+    padding: 3rem 2.25rem 1rem;
+    &__title {
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+    }
+    &__gallery {
+      width: 100%;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    &__image-container {
+      flex-basis: 31%;
+    }
+    &__image {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 @include breakpoints.large {
@@ -148,6 +185,20 @@
     &__quote {
       font-size: 1.425rem;
       margin-bottom: 1rem;
+    }
+  }
+  .photo-gallery {
+    padding: 3rem 8.125rem 2rem;
+    &__title {
+      margin-bottom: 2rem;
+    }
+    &__gallery {
+      width: 100%;
+      justify-content: center;
+      gap: 1.375rem;
+    }
+    &__image-container {
+      flex-basis: 31.5%;
     }
   }
 }

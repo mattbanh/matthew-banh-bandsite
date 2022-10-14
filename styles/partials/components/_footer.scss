@@ -1,0 +1,30 @@
+@use "../fonts";
+@use "../colors" as colors;
+@use "../breakpoints" as breakpoints;
+
+.footer {
+  background-color: colors.$primary-dark;
+  color: colors.$primary-white;
+  padding: 1.5rem 1rem 1rem;
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  &__subheader {
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  &__text {
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+  }
+  &__social {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+}
