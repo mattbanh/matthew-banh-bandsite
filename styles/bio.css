@@ -135,7 +135,7 @@
 
 /* main bio section */
 .bio {
-  margin: 1rem;
+  padding: 1rem 1rem 0 1rem;
 }
 .bio__title {
   font-size: 1.5rem;
@@ -176,7 +176,25 @@
   margin-bottom: 1rem;
 }
 
-/* media query for tablet */
+.photo-gallery {
+  padding: 1.5rem 1rem 1rem;
+  background-color: #fafafa;
+}
+.photo-gallery__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.photo-gallery__gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.photo-gallery__image {
+  width: 100%;
+}
+
+/* MEDIA QUERY FOR TABLET */
 @media only screen and (min-width: 768px) {
   /* hero section */
   .bio-hero {
@@ -228,6 +246,30 @@
   .bio-description__description {
     font-size: 0.875rem;
     line-height: 1.375rem;
+  }
+  .photo-gallery {
+    padding: 3rem 2.25rem 1rem;
+    background-color: #fafafa;
+  }
+  .photo-gallery__title {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .photo-gallery__gallery {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .photo-gallery__image-container {
+    flex-basis: 31%;
+  }
+  .photo-gallery__image {
+    -o-object-fit: cover;
+       object-fit: cover;
+    width: 100%;
+    height: 100%;
   }
 }
 @media only screen and (min-width: 1280px) {
