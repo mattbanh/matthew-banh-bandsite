@@ -134,15 +134,12 @@
   }
   .photo-gallery {
     padding: 3rem 2.25rem 1rem;
-    background-color: colors.$secondary-white;
     &__title {
       font-size: 2.25rem;
       margin-bottom: 1.5rem;
     }
     &__gallery {
       width: 100%;
-      display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       gap: 1.5rem;
     }
@@ -188,6 +185,20 @@
     &__quote {
       font-size: 1.425rem;
       margin-bottom: 1rem;
+    }
+  }
+  .photo-gallery {
+    padding: 3rem 8.125rem 2rem;
+    &__title {
+      margin-bottom: 2rem;
+    }
+    &__gallery {
+      width: 100%;
+      justify-content: center;
+      gap: 1.375rem;
+    }
+    &__image-container {
+      flex-basis: 31.5%;
     }
   }
 }
