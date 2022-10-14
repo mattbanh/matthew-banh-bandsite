@@ -1,0 +1,41 @@
+@use "../fonts";
+@use "../colors" as colors;
+@use "../breakpoints" as breakpoints;
+
+.bio-hero {
+  height: 11.5rem;
+  background: center / cover no-repeat url(../../../assets/images/hero-bio.jpg);
+  &__overlay {
+    background-color: rgba(50, 50, 50, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: colors.$primary-white;
+  }
+}
+
+@include breakpoints.medium {
+  .bio-hero {
+    height: 27.75rem;
+    &__title {
+      margin: 0 2.25rem;
+      font-size: 3.625rem;
+    }
+  }
+}
+
+@include breakpoints.large {
+  .bio-hero {
+    height: 39.375rem;
+    &__title {
+      margin: 0 8.125rem;
+    }
+  }
+}
