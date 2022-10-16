@@ -24,8 +24,8 @@
 /* mobile media query */
 /* tablet media query */
 /* desktop media query */
-/* css for header and navigation */
-/* mobile version below until media query for tablet */
+/* CSS for header and navigation */
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
 .header {
   background-color: #323232;
 }
@@ -113,10 +113,10 @@
   }
 }
 /* CSS for main section of bandsite bio page */
-/* mobile version below until media query for tablet */
-/* hero section */
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
+/* hero section - mobile */
 .bio-hero {
-  height: 11.5rem;
+  height: 58.5vw;
   background: center/cover no-repeat url(../../../assets/images/hero-bio.jpg);
 }
 .bio-hero__overlay {
@@ -130,10 +130,11 @@
   margin: 0 1rem;
   font-size: 1.5rem;
   font-weight: 600;
+  letter-spacing: 0.02rem;
   color: #ffffff;
 }
 
-/* main bio section */
+/* main bio section - mobile */
 .bio {
   padding: 1rem 1rem 0 1rem;
 }
@@ -145,10 +146,11 @@
 .bio__subheader {
   font-size: 0.875rem;
   font-weight: 600;
+  margin-bottom: 1rem;
 }
 .bio__image {
   width: 100%;
-  height: 10rem;
+  height: 49vw;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: bottom;
@@ -168,6 +170,7 @@
 
 .bio-description {
   padding-right: 0.45rem;
+  /* photo gallery section - mobile */
 }
 .bio-description__description {
   font-size: 0.8125rem;
@@ -190,23 +193,34 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+.photo-gallery__image-container {
+  overflow: hidden;
+}
 .photo-gallery__image {
   width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  /* diving deeper using pseudoclasses */
+  filter: grayscale(100%);
+  transition: 0.35s linear;
+}
+.photo-gallery__image:hover {
+  filter: grayscale(0%);
+  transform: scale(1.075);
 }
 
 /* MEDIA QUERY FOR TABLET */
 @media only screen and (min-width: 768px) {
-  /* hero section */
-  .bio-hero {
-    height: 27.75rem;
-  }
+  /* hero section - tablet */
   .bio-hero__title {
     margin: 0 2.25rem;
     font-size: 3.625rem;
+    letter-spacing: 0.1rem;
   }
-  /* main bio section */
+  /* main bio section - tablet */
   .bio {
-    margin: 3rem 2.25rem 1rem;
+    margin: 1.75rem 1.5rem 1rem;
   }
   .bio__title {
     font-size: 2.25rem;
@@ -217,7 +231,7 @@
     margin-bottom: 1.5rem;
   }
   .bio__image {
-    height: 19.25rem;
+    height: 40vw;
     margin-bottom: 1.5rem;
   }
   .bio-main {
@@ -238,17 +252,17 @@
     padding-right: 0;
   }
   .bio-description__container {
-    -moz-column-count: 2;
-         column-count: 2;
+    display: flex;
     -moz-column-gap: 1.5rem;
          column-gap: 1.5rem;
   }
   .bio-description__description {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     line-height: 1.375rem;
   }
+  /* photo gallery section - tablet */
   .photo-gallery {
-    padding: 3rem 2.25rem 1rem;
+    padding: 3rem 2.25rem 2.125rem;
   }
   .photo-gallery__title {
     font-size: 2.25rem;
@@ -270,16 +284,16 @@
   }
 }
 @media only screen and (min-width: 1280px) {
-  /* hero section */
+  /* hero section - desktop */
   .bio-hero {
-    height: 39.375rem;
+    height: 39rem;
   }
   .bio-hero__title {
-    margin: 0 8.125rem;
+    margin: 0 8rem;
   }
-  /* main bio section */
+  /* main bio section - desktop */
   .bio {
-    margin: 3rem 8.125rem 1rem;
+    margin: 1.875rem 7rem 1rem;
   }
   .bio__title {
     margin-bottom: 2.375rem;
@@ -288,7 +302,7 @@
     margin-bottom: 1.5rem;
   }
   .bio__image {
-    height: 28.25rem;
+    height: 35vw;
     margin-bottom: 1.625rem;
   }
   .bio-main {
@@ -296,14 +310,15 @@
   }
   .bio-quote {
     margin-bottom: 3rem;
-    width: 80%;
+    width: 82%;
   }
   .bio-quote__quote {
     font-size: 1.425rem;
     margin-bottom: 1rem;
   }
+  /* photo gallery section - desktop */
   .photo-gallery {
-    padding: 3rem 8.125rem 2rem;
+    padding: 3rem 8rem 2rem;
   }
   .photo-gallery__title {
     margin-bottom: 2rem;
@@ -317,10 +332,16 @@
     flex-basis: 31.5%;
   }
 }
+/* CSS for footer */
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
 .footer {
   background-color: #323232;
   color: #ffffff;
-  padding: 1.5rem 1rem 1rem;
+  padding: 1.625rem 1rem 1rem;
+  /* styles for text - mobile */
+  /* socials section - mobile */
+  /* contact info section - mobile */
+  /* logo and copyright - mobile */
 }
 .footer__title {
   font-size: 1.5rem;
@@ -331,19 +352,130 @@
   font-size: 0.8125rem;
   line-height: 1.125rem;
   font-weight: 600;
-  margin-bottom: 1rem;
 }
 .footer__text {
   font-size: 0.8125rem;
   line-height: 1.125rem;
 }
+.footer__span {
+  display: block;
+}
+.footer__email {
+  font-size: 0.8125rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+.footer__social-container {
+  margin-bottom: 1.25rem;
+}
 .footer__social {
-  width: 40%;
+  width: 7.75rem;
   display: flex;
   justify-content: space-between;
+}
+.footer__social-icon {
+  height: 1.375rem;
+}
+.footer__contact-container {
+  margin-bottom: 4rem;
+}
+.footer__contact {
+  list-style-type: none;
+  margin-left: -2.5rem;
+  margin-bottom: 1.5rem;
+}
+.footer__list {
   margin-bottom: 1rem;
 }
+.footer__logo {
+  margin-bottom: 0.5rem;
+}
+.footer__copyright {
+  font-size: 0.675rem;
+}
 
+/* MEDIA QUERY FOR TABLET */
+@media only screen and (min-width: 768px) {
+  .footer {
+    padding: 3rem 2.25rem 2.25rem;
+    position: relative;
+    /* styles for text - tablet */
+    /* socials section - tablet */
+    /* contact section - tablet */
+    /* logo and copyright - tablet */
+  }
+  .footer__title {
+    font-size: 2.25rem;
+    margin-bottom: 0;
+  }
+  .footer__subheader {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  .footer__text {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  .footer__email {
+    font-size: 0.875rem;
+  }
+  .footer__social-container {
+    display: flex;
+    align-items: baseline;
+    gap: 1.75rem;
+    margin-bottom: 2.25rem;
+  }
+  .footer__social {
+    margin-bottom: 0rem;
+  }
+  .footer__contact-container {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 1.625rem;
+  }
+  .footer__contact {
+    margin-bottom: 0rem;
+  }
+  .footer__list {
+    margin-bottom: 1.5rem;
+  }
+  .footer__logo {
+    margin-bottom: 0rem;
+    position: absolute;
+    top: 4rem;
+    right: 2.25rem;
+  }
+  .footer__copyright {
+    font-size: 0.875rem;
+  }
+}
+/* MEDIA QUERY FOR DESKTOP */
+@media only screen and (min-width: 1280px) {
+  .footer {
+    padding: 2.75rem 8rem 2.25rem;
+    /* styles for text - desktop */
+    /* socials section - desktop */
+    /* contact section - desktop */
+    /* logo and copyright - desktop */
+  }
+  .footer__email {
+    font-size: 0.875rem;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .footer__social-container {
+    gap: 3rem;
+    margin-bottom: 2.125rem;
+  }
+  .footer__contact-container {
+    gap: 4rem;
+  }
+  .footer__logo {
+    top: 4rem;
+    right: 8.125rem;
+  }
+}
+/* body level resets and settings */
 html,
 body {
   margin: 0;
@@ -357,6 +489,7 @@ body {
   box-sizing: inherit;
 }
 
+/* remove default margins for more control of spacing */
 h1,
 h2,
 h3,

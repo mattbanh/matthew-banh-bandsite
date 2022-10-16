@@ -2,8 +2,8 @@
 @use "../colors" as colors;
 @use "../breakpoints" as breakpoints;
 
-/* css for header and navigation */
-/* mobile version below until media query for tablet */
+/* CSS for header and navigation */
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
 .header {
   background-color: colors.$primary-dark;
 }
@@ -30,11 +30,13 @@
     padding-bottom: 0.625rem;
     border-bottom: 3px solid transparent;
     transition: 0.15s;
+    // active page navigation item remains highlighted
     &--active {
       color: colors.$primary-white;
       font-weight: 600;
       border-bottom: 3px solid colors.$primary-white;
     }
+    // navigation item highlights on hover
     &:hover {
       color: colors.$primary-white;
       font-weight: 600;

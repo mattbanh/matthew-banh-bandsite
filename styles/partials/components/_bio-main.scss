@@ -4,11 +4,12 @@
 
 /* CSS for main section of bandsite bio page */
 
-/* mobile version below until media query for tablet */
-/* hero section */
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
+/* hero section - mobile */
 .bio-hero {
-  height: 11.5rem;
+  height: 58.5vw;
   background: center / cover no-repeat url(../../../assets/images/hero-bio.jpg);
+  // css to create 50% opacity overlay on top of background image so band name has better contrast
   &__overlay {
     background-color: rgba(50, 50, 50, 0.5);
     width: 100%;
@@ -16,15 +17,15 @@
     display: flex;
     align-items: center;
   }
-
   &__title {
     margin: 0 1rem;
     font-size: 1.5rem;
     font-weight: 600;
+    letter-spacing: 0.02rem;
     color: colors.$primary-white;
   }
 }
-/* main bio section */
+/* main bio section - mobile */
 .bio {
   padding: 1rem 1rem 0 1rem;
   &__title {
@@ -35,10 +36,11 @@
   &__subheader {
     font-size: 0.875rem;
     font-weight: 600;
+    margin-bottom: 1rem;
   }
   &__image {
     width: 100%;
-    height: 10rem;
+    height: 49vw;
     object-fit: cover;
     object-position: bottom;
     margin-bottom: 0.5rem;
@@ -55,6 +57,7 @@
   }
 }
 .bio-description {
+  // padding added to match the mockup more closely
   padding-right: 0.45rem;
   &__description {
     font-size: 0.8125rem;
@@ -62,6 +65,8 @@
     font-weight: 400;
     margin-bottom: 1rem;
   }
+
+  /* photo gallery section - mobile */
 }
 .photo-gallery {
   padding: 1.5rem 1rem 1rem;
@@ -76,24 +81,39 @@
     flex-wrap: wrap;
     gap: 1rem;
   }
+  &__image-container {
+    overflow: hidden;
+  }
   &__image {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* diving deeper using pseudoclasses */
+    // images grayscale by default
+    filter: grayscale(100%);
+    transition: 0.35s linear;
+    // upon hover, images gain colour and scale up 0.5% to add a feel of responsiveness
+    &:hover {
+      filter: grayscale(0%);
+      transform: scale(1.075);
+    }
+    // in the future, would like to add modal image using javascript (click image to popup)
   }
 }
 
 /* MEDIA QUERY FOR TABLET */
 @include breakpoints.medium {
-  /* hero section */
+  /* hero section - tablet */
   .bio-hero {
-    height: 27.75rem;
     &__title {
       margin: 0 2.25rem;
       font-size: 3.625rem;
+      letter-spacing: 0.1rem;
     }
   }
-  /* main bio section */
+  /* main bio section - tablet */
   .bio {
-    margin: 3rem 2.25rem 1rem;
+    margin: 1.75rem 1.5rem 1rem;
     &__title {
       font-size: 2.25rem;
       margin-bottom: 1.5rem;
@@ -103,7 +123,7 @@
       margin-bottom: 1.5rem;
     }
     &__image {
-      height: 19.25rem;
+      height: 40vw;
       margin-bottom: 1.5rem;
     }
   }
@@ -124,16 +144,17 @@
   .bio-description {
     padding-right: 0;
     &__container {
-      column-count: 2;
+      display: flex;
       column-gap: 1.5rem;
     }
     &__description {
-      font-size: 0.875rem;
+      font-size: 0.85rem;
       line-height: 1.375rem;
     }
   }
+  /* photo gallery section - tablet */
   .photo-gallery {
-    padding: 3rem 2.25rem 1rem;
+    padding: 3rem 2.25rem 2.125rem;
     &__title {
       font-size: 2.25rem;
       margin-bottom: 1.5rem;
@@ -155,16 +176,16 @@
 }
 
 @include breakpoints.large {
-  /* hero section */
+  /* hero section - desktop */
   .bio-hero {
-    height: 39.375rem;
+    height: 39rem;
     &__title {
-      margin: 0 8.125rem;
+      margin: 0 8rem;
     }
   }
-  /* main bio section */
+  /* main bio section - desktop */
   .bio {
-    margin: 3rem 8.125rem 1rem;
+    margin: 1.875rem 7rem 1rem;
     &__title {
       margin-bottom: 2.375rem;
     }
@@ -172,7 +193,7 @@
       margin-bottom: 1.5rem;
     }
     &__image {
-      height: 28.25rem;
+      height: 35vw;
       margin-bottom: 1.625rem;
     }
   }
@@ -181,14 +202,16 @@
   }
   .bio-quote {
     margin-bottom: 3rem;
-    width: 80%;
+    width: 82%;
     &__quote {
       font-size: 1.425rem;
       margin-bottom: 1rem;
     }
   }
+
+  /* photo gallery section - desktop */
   .photo-gallery {
-    padding: 3rem 8.125rem 2rem;
+    padding: 3rem 8rem 2rem;
     &__title {
       margin-bottom: 2rem;
     }

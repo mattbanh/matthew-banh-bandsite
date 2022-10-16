@@ -2,10 +2,14 @@
 @use "../colors" as colors;
 @use "../breakpoints" as breakpoints;
 
+/* CSS for footer */
+
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
 .footer {
   background-color: colors.$primary-dark;
   color: colors.$primary-white;
-  padding: 1.5rem 1rem 1rem;
+  padding: 1.625rem 1rem 1rem;
+  /* styles for text - mobile */
   &__title {
     font-size: 1.5rem;
     font-weight: 600;
@@ -15,16 +19,142 @@
     font-size: 0.8125rem;
     line-height: 1.125rem;
     font-weight: 600;
-    margin-bottom: 1rem;
   }
   &__text {
     font-size: 0.8125rem;
     line-height: 1.125rem;
   }
+  &__span {
+    display: block;
+  }
+  &__email {
+    font-size: 0.8125rem;
+    color: colors.$primary-white;
+    text-decoration: none;
+  }
+
+  /* socials section - mobile */
+  &__social-container {
+    margin-bottom: 1.25rem;
+  }
   &__social {
-    width: 40%;
+    width: 7.75rem;
     display: flex;
     justify-content: space-between;
+  }
+  &__social-icon {
+    height: 1.375rem;
+  }
+
+  /* contact info section - mobile */
+  &__contact-container {
+    margin-bottom: 4rem;
+  }
+  &__contact {
+    list-style-type: none;
+    margin-left: -2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  &__list {
     margin-bottom: 1rem;
+  }
+
+  /* logo and copyright - mobile */
+  &__logo {
+    margin-bottom: 0.5rem;
+  }
+  &__copyright {
+    font-size: 0.675rem;
+  }
+}
+
+/* MEDIA QUERY FOR TABLET */
+@include breakpoints.medium {
+  .footer {
+    padding: 3rem 2.25rem 2.25rem;
+    // position relative to allow logo to move responsively from mobile
+    position: relative;
+    /* styles for text - tablet */
+    &__title {
+      font-size: 2.25rem;
+      margin-bottom: 0;
+    }
+    &__subheader {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+    &__text {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+    &__email {
+      font-size: 0.875rem;
+    }
+
+    /* socials section - tablet */
+    &__social-container {
+      display: flex;
+      align-items: baseline;
+      gap: 1.75rem;
+      margin-bottom: 2.25rem;
+    }
+    &__social {
+      margin-bottom: 0rem;
+    }
+
+    /* contact section - tablet */
+    &__contact-container {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 1.625rem;
+    }
+    &__contact {
+      margin-bottom: 0rem;
+    }
+    &__list {
+      margin-bottom: 1.5rem;
+    }
+    /* logo and copyright - tablet */
+    &__logo {
+      margin-bottom: 0rem;
+      //   allow logo to be responsive from mobile
+      position: absolute;
+      top: 4rem;
+      right: 2.25rem;
+    }
+    &__copyright {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+/* MEDIA QUERY FOR DESKTOP */
+@include breakpoints.large {
+  .footer {
+    padding: 2.75rem 8rem 2.25rem;
+
+    /* styles for text - desktop */
+    &__email {
+      font-size: 0.875rem;
+      color: colors.$primary-white;
+      text-decoration: none;
+    }
+
+    /* socials section - desktop */
+    &__social-container {
+      gap: 3rem;
+      margin-bottom: 2.125rem;
+    }
+
+    /* contact section - desktop */
+    &__contact-container {
+      gap: 4rem;
+    }
+
+    /* logo and copyright - desktop */
+    &__logo {
+      top: 4rem;
+      right: 8.125rem;
+    }
   }
 }

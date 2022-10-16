@@ -5,6 +5,7 @@
 @use "./partials/components/bio-main";
 @use "./partials/components/footer";
 
+/* body level resets and settings */
 html,
 body {
   margin: 0;
@@ -18,6 +19,7 @@ body {
   box-sizing: inherit;
 }
 
+/* remove default margins for more control of spacing */
 h1,
 h2,
 h3,
