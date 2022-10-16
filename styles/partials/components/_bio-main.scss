@@ -8,7 +8,7 @@
 /* hero section - mobile */
 .bio-hero {
   height: 58.5vw;
-  background: center / cover no-repeat url(../../../assets/images/hero-bio.jpg);
+  background: center / cover no-repeat url(../assets/images/hero-bio.jpg);
   // css to create 50% opacity overlay on top of background image so band name has better contrast
   &__overlay {
     background-color: rgba(50, 50, 50, 0.5);
@@ -27,7 +27,7 @@
 }
 /* main bio section - mobile */
 .bio {
-  padding: 1rem 1rem 0 1rem;
+  padding: 1.25rem 1rem 0 1rem;
   &__title {
     font-size: 1.5rem;
     font-weight: 600;
