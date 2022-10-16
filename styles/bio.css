@@ -1,21 +1,21 @@
 /* Regular */
 @font-face {
   font-family: "Avenir Next";
-  src: url(../../assets/fonts/avenir-next-regular-400.ttf) format("truetype");
+  src: url(../assets/fonts/avenir-next-regular-400.ttf) format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 /* Demi */
 @font-face {
   font-family: "Avenir Next";
-  src: url(../../assets/fonts/avenir-next-demi-600.ttf) format("truetype");
+  src: url(../assets/fonts/avenir-next-demi-600.ttf) format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 /* Bold */
 @font-face {
   font-family: "Avenir Next";
-  src: url(../../assets/fonts/avenir-next-bold-700.ttf) format("truetype");
+  src: url(../assets/fonts/avenir-next-bold-700.ttf) format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -117,7 +117,7 @@
 /* hero section - mobile */
 .bio-hero {
   height: 58.5vw;
-  background: center/cover no-repeat url(../../../assets/images/hero-bio.jpg);
+  background: center/cover no-repeat url(../assets/images/hero-bio.jpg);
 }
 .bio-hero__overlay {
   background-color: rgba(50, 50, 50, 0.5);
@@ -136,7 +136,7 @@
 
 /* main bio section - mobile */
 .bio {
-  padding: 1rem 1rem 0 1rem;
+  padding: 1.25rem 1rem 0 1rem;
 }
 .bio__title {
   font-size: 1.5rem;
