@@ -101,6 +101,52 @@
   }
 }
 
+.comments {
+  padding: 1rem;
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.comments-form {
+  &__container {
+    padding: 0;
+    border: none;
+  }
+  &__label {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: colors.$primary-grey;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  &__input {
+    margin-bottom: 1rem;
+    border: 2px solid colors.$secondary-grey;
+    border-radius: 5px;
+    background-color: colors.$secondary-white;
+    color: colors.$primary-dark;
+    font-family: "Avenir Next";
+    font-size: 0.8125rem;
+    padding: 0.5rem;
+    &::placeholder {
+      color: colors.$primary-dark;
+      letter-spacing: 0.8;
+    }
+  }
+  &__textarea {
+    @extend .comments-form__input;
+
+    &::placeholder {
+      color: colors.$primary-dark;
+      letter-spacing: 0.8;
+    }
+  }
+}
+
 /* MEDIA QUERY FOR TABLET */
 @include breakpoints.medium {
   /* hero section - tablet */

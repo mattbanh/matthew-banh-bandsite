@@ -210,6 +210,62 @@
   transform: scale(1.075);
 }
 
+.comments {
+  padding: 1rem;
+}
+.comments__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.comments-form__container {
+  padding: 0;
+  border: none;
+}
+.comments-form__label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #afafaf;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.comments-form__input, .comments-form__textarea {
+  margin-bottom: 1rem;
+  border: 2px solid #e1e1e1;
+  border-radius: 5px;
+  background-color: #fafafa;
+  color: #323232;
+  font-family: "Avenir Next";
+  font-size: 0.8125rem;
+  padding: 0.5rem;
+}
+.comments-form__input::-moz-placeholder, .comments-form__textarea::-moz-placeholder {
+  color: #323232;
+  letter-spacing: 0.8;
+}
+.comments-form__input:-ms-input-placeholder, .comments-form__textarea:-ms-input-placeholder {
+  color: #323232;
+  letter-spacing: 0.8;
+}
+.comments-form__input::placeholder, .comments-form__textarea::placeholder {
+  color: #323232;
+  letter-spacing: 0.8;
+}
+.comments-form__textarea::-moz-placeholder {
+  color: #323232;
+  letter-spacing: 0.8;
+}
+.comments-form__textarea:-ms-input-placeholder {
+  color: #323232;
+  letter-spacing: 0.8;
+}
+.comments-form__textarea::placeholder {
+  color: #323232;
+  letter-spacing: 0.8;
+}
+
 /* MEDIA QUERY FOR TABLET */
 @media only screen and (min-width: 768px) {
   /* hero section - tablet */
