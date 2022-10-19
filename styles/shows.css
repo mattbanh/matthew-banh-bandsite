@@ -112,314 +112,42 @@
     margin-right: 2rem;
   }
 }
-/* CSS for main section of bandsite bio page */
-/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
-/* hero section - mobile */
-.bio-hero {
-  height: 58.5vw;
-  background: center/cover no-repeat url(../assets/images/hero-bio.jpg);
+.shows-hero {
+  color: #ffffff;
+  background: center/cover no-repeat url(../assets/images/hero-shows.jpg);
 }
-.bio-hero__overlay {
+.shows-hero__overlay {
+  padding: 2rem 1rem;
   background-color: rgba(50, 50, 50, 0.5);
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
-.bio-hero__title {
-  margin: 0 1rem;
+.shows-hero__title {
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 0.02rem;
-  color: #ffffff;
+  margin-bottom: 1rem;
 }
-
-/* main bio section - mobile */
-.bio {
-  padding: 1.25rem 1rem 0 1rem;
-}
-.bio__title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-.bio__subheader {
+.shows-hero__subheader {
   font-size: 0.875rem;
   font-weight: 600;
   margin-bottom: 1rem;
 }
-.bio__image {
-  width: 100%;
-  height: 49vw;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: bottom;
-     object-position: bottom;
-  margin-bottom: 0.5rem;
-}
 
-.bio-quote {
-  margin-bottom: 1.5rem;
+.shows-schedule {
+  color: #323232;
+  padding: 2rem 1rem;
 }
-.bio-quote__quote, .bio-quote__quote-author {
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1.375rem;
-  margin-bottom: 0.25rem;
-}
-
-.bio-description {
-  padding-right: 0.45rem;
-  /* photo gallery section - mobile */
-}
-.bio-description__description {
-  font-size: 0.8125rem;
-  line-height: 1.125rem;
-  font-weight: 400;
-  margin-bottom: 1rem;
-}
-
-.photo-gallery {
-  padding: 1.5rem 1rem 1rem;
-  background-color: #fafafa;
-}
-.photo-gallery__title {
+.shows-schedule__title {
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-.photo-gallery__gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.photo-gallery__image-container {
-  overflow: hidden;
-}
-.photo-gallery__image {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  /* diving deeper using pseudoclasses */
-  filter: grayscale(100%);
-  transition: 0.35s linear;
-}
-.photo-gallery__image:hover {
-  filter: grayscale(0%);
-  transform: scale(1.075);
-}
-
-.comments {
-  padding: 1rem;
-}
-.comments__title {
-  font-size: 1.5rem;
-  font-weight: 600;
+  letter-spacing: 0.02rem;
   margin-bottom: 1rem;
 }
-.comments__avatar {
-  border-radius: 50%;
-  width: 2.25rem;
-  height: 2.25rem;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: left;
-     object-position: left;
-}
 
-.comments-area {
-  display: flex;
-  gap: 1rem;
-}
-.comments-area__avatar-section {
-  padding-top: 1rem;
-}
-
-.comments-form-section {
-  width: 100%;
-}
-
-.comments-form__container {
-  padding: 0;
-  border: none;
-}
-.comments-form__label {
-  font-size: 0.625rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #afafaf;
-  display: block;
-  margin-bottom: 0.25rem;
-}
-.comments-form__input, .comments-form__textarea {
-  margin-bottom: 1rem;
-  border: 1px solid #e1e1e1;
-  border-radius: 4px;
-  background-color: #fafafa;
-  color: #323232;
-  font-family: "Avenir Next";
-  font-size: 0.8125rem;
-  padding: 0.5rem;
-  width: 100%;
-}
-.comments-form__input::-moz-placeholder, .comments-form__textarea::-moz-placeholder {
-  color: #323232;
-  letter-spacing: 0.8;
-}
-.comments-form__input:-ms-input-placeholder, .comments-form__textarea:-ms-input-placeholder {
-  color: #323232;
-  letter-spacing: 0.8;
-}
-.comments-form__input::placeholder, .comments-form__textarea::placeholder {
-  color: #323232;
-  letter-spacing: 0.8;
-}
-.comments-form__input:focus, .comments-form__textarea:focus {
-  outline: 1px solid #323232;
-}
-.comments-form__input:invalid, .comments-form__textarea:invalid {
-  outline: 1px solid #d22d2d;
-}
-.comments-form__submit-button {
-  text-transform: uppercase;
-  padding: 0.75rem;
-  width: 100%;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 1.2;
-  color: #ffffff;
-  background-color: #323232;
-  font-family: "Avenir Next";
-  border: none;
-}
-.comments-form__submit-button:hover {
-  background-color: #000000;
-}
-
-/* MEDIA QUERY FOR TABLET */
-@media only screen and (min-width: 768px) {
-  /* hero section - tablet */
-  .bio-hero__title {
-    margin: 0 2.25rem;
-    font-size: 3.625rem;
-    letter-spacing: 0.1rem;
-  }
-  /* main bio section - tablet */
-  .bio {
-    margin: 1.75rem 1.5rem 1rem;
-  }
-  .bio__title {
-    font-size: 2.25rem;
-    margin-bottom: 1.5rem;
-  }
-  .bio__subheader {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .bio__image {
-    height: 40vw;
-    margin-bottom: 1.5rem;
-  }
-  .bio-main {
-    margin: 0 3.75rem;
-  }
-  .bio-quote {
-    margin-bottom: 3.125rem;
-  }
-  .bio-quote__quote {
-    font-size: 1.375rem;
-    line-height: 2rem;
-    margin-bottom: 0.75rem;
-  }
-  .bio-quote__quote-author {
-    font-size: 1rem;
-  }
-  .bio-description {
-    padding-right: 0;
-  }
-  .bio-description__container {
-    display: flex;
-    -moz-column-gap: 1.5rem;
-         column-gap: 1.5rem;
-  }
-  .bio-description__description {
-    font-size: 0.85rem;
-    line-height: 1.375rem;
-  }
-  /* photo gallery section - tablet */
-  .photo-gallery {
-    padding: 3rem 2.25rem 2.125rem;
-  }
-  .photo-gallery__title {
-    font-size: 2.25rem;
-    margin-bottom: 1.5rem;
-  }
-  .photo-gallery__gallery {
-    width: 100%;
-    justify-content: center;
-    gap: 1.5rem;
-  }
-  .photo-gallery__image-container {
-    flex-basis: 31%;
-  }
-  .photo-gallery__image {
-    -o-object-fit: cover;
-       object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-}
-@media only screen and (min-width: 1280px) {
-  /* hero section - desktop */
-  .bio-hero {
-    height: 39rem;
-  }
-  .bio-hero__title {
-    margin: 0 8rem;
-  }
-  /* main bio section - desktop */
-  .bio {
-    margin: 1.875rem 7rem 1rem;
-  }
-  .bio__title {
-    margin-bottom: 2.375rem;
-  }
-  .bio__subheader {
-    margin-bottom: 1.5rem;
-  }
-  .bio__image {
-    height: 35vw;
-    margin-bottom: 1.625rem;
-  }
-  .bio-main {
-    margin: 0 5.5rem;
-  }
-  .bio-quote {
-    margin-bottom: 3rem;
-    width: 82%;
-  }
-  .bio-quote__quote {
-    font-size: 1.425rem;
-    margin-bottom: 1rem;
-  }
-  /* photo gallery section - desktop */
-  .photo-gallery {
-    padding: 3rem 8rem 2rem;
-  }
-  .photo-gallery__title {
-    margin-bottom: 2rem;
-  }
-  .photo-gallery__gallery {
-    width: 100%;
-    justify-content: center;
-    gap: 1.375rem;
-  }
-  .photo-gallery__image-container {
-    flex-basis: 31.5%;
-  }
-}
 /* CSS for footer */
 /* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
 .footer {
@@ -588,4 +316,4 @@ p {
 
 ul {
   margin: 0;
-}/*# sourceMappingURL=bio.css.map */
+}/*# sourceMappingURL=shows.css.map */

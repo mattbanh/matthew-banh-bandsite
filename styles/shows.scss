@@ -1,0 +1,33 @@
+@use "./partials/fonts";
+@use "./partials/colors" as colors;
+@use "./partials/breakpoints";
+@use "./partials/components/header";
+@use "./partials/components/shows-main";
+@use "./partials/components/footer";
+
+/* body level resets and settings */
+html,
+body {
+  margin: 0;
+  font-family: "Avenir Next";
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* remove default margins for more control of spacing */
+h1,
+h2,
+h3,
+a,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}

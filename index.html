@@ -24,7 +24,7 @@
             <a class="header-nav__item" href="./index.html">Biography</a>
           </li>
           <li class="header-nav__section">
-            <a class="header-nav__item" href="">Shows</a>
+            <a class="header-nav__item" href="./shows.html">Shows</a>
           </li>
         </ul>
       </nav>
@@ -157,40 +157,50 @@
       </section>
       <section class="comments">
         <h2 class="comments__title">Join the Conversation</h2>
-        <form class="comments-form">
-          <fieldset class="comments-form__container">
-            <label class="comments-form__label" for="comments-form__name"
-              >Name</label
-            >
-            <input
-              class="comments-form__input"
-              type="text"
-              id="comments-form__name"
-              name="comments-form__name"
-              placeholder="Enter your name"
-              required
-            />
-            <label class="comments-form__label" for="comments-form__comment"
-              >Comment</label
-            >
-            <textarea
-              class="comments-form__textarea"
-              id="comments-form__comment"
-              name="comments-form__comment"
-              rows="3"
-              cols="30"
-              placeholder="Add a new comment"
-              required
-            ></textarea>
-          </fieldset>
-          <div class="comments-form__submit">
-            <input
-              class="comments-form__submit-button"
-              type="submit"
-              value="Comment"
+        <div class="comments-area">
+          <div class="comments-area__avatar-section">
+            <img
+              class="comments__avatar"
+              src="./assets/images/Mohan-muruge.jpg"
+              alt="avatar"
             />
           </div>
-        </form>
+          <div class="comments-form-section">
+            <form class="comments-form">
+              <fieldset class="comments-form__container">
+                <label class="comments-form__label" for="comments-form__name"
+                  >Name</label
+                >
+                <input
+                  class="comments-form__input"
+                  type="text"
+                  id="comments-form__name"
+                  name="comments-form__name"
+                  placeholder="Enter your name"
+                  required
+                />
+                <label class="comments-form__label" for="comments-form__comment"
+                  >Comment</label
+                >
+                <textarea
+                  class="comments-form__textarea"
+                  id="comments-form__comment"
+                  name="comments-form__comment"
+                  rows="5"
+                  placeholder="Add a new comment"
+                  required
+                ></textarea>
+              </fieldset>
+              <div class="comments-form__submit">
+                <input
+                  class="comments-form__submit-button"
+                  type="submit"
+                  value="Comment"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
       </section>
     </main>
 

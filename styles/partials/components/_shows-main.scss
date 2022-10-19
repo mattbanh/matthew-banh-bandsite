@@ -1,0 +1,41 @@
+@use "../fonts";
+@use "../colors" as colors;
+@use "../breakpoints" as breakpoints;
+
+.shows-hero {
+  color: colors.$primary-white;
+  background: center / cover no-repeat url(../assets/images/hero-shows.jpg);
+  // css to create 50% opacity overlay on top of background image so band name has better contrast
+  &__overlay {
+    padding: 2rem 1rem;
+    background-color: rgba(50, 50, 50, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
+    margin-bottom: 1rem;
+  }
+  &__subheader {
+    // font-family: "Avenir-Next";
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+}
+
+.shows-schedule {
+  color: colors.$primary-dark;
+  padding: 2rem 1rem;
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
+    margin-bottom: 1rem;
+  }
+}
