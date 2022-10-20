@@ -100,13 +100,21 @@
     // in the future, would like to add modal image using javascript (click image to popup)
   }
 }
-
+/* comments section - mobile */
 .comments {
   padding: 1rem;
   &__title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
+  }
+}
+.comments-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  &__avatar-section {
+    padding-top: 1rem;
   }
   &__avatar {
     border-radius: 50%;
@@ -115,21 +123,9 @@
     object-fit: cover;
     object-position: left;
   }
-}
-
-.comments-area {
-  display: flex;
-  gap: 1rem;
-  &__avatar-section {
-    padding-top: 1rem;
+  &__form {
+    width: 100%;
   }
-}
-
-.comments-form-section {
-  width: 100%;
-}
-
-.comments-form {
   &__container {
     padding: 0;
     border: none;
@@ -179,6 +175,46 @@
     &:hover {
       background-color: colors.$secondary-dark;
     }
+  }
+}
+
+.posted-comments {
+  border-top: 1px solid colors.$secondary-grey;
+}
+/* styling for individual posted comments */
+.comment {
+  border-bottom: 1px solid colors.$secondary-grey;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  &__title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  &__avatar {
+    border-radius: 50%;
+    width: 2.25rem;
+    height: 2.25rem;
+    object-fit: cover;
+    object-position: left;
+    background: colors.$secondary-grey;
+  }
+  &__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: colors.$primary-dark;
+  }
+  &__date {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: colors.$primary-grey;
+  }
+  &__comment {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: colors.$primary-dark;
   }
 }
 
