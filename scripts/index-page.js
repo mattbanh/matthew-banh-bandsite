@@ -20,8 +20,8 @@
 //     </div>
 //     <div>
 //         <div class="comment__title">
-//         <span class="comment__name">Connor Walton</span>
-//         <span class="comment__date">02/17/2021</span>
+//          <span class="comment__name">Connor Walton</span>
+//          <span class="comment__date">02/17/2021</span>
 //         </div>
 //         <p class="comment__comment">
 //         This is art. This is inexplicable magic expressed in the purest
@@ -52,3 +52,60 @@ comments = [
       "I can't stop listening. Every time I hear one of their songs - the vocals - it give sme goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
   },
 ];
+
+// Create a function which adds comment blocks following a specific structure. Comment blocks will be filled with information from the array above
+
+const postComment = (commentDetails) => {
+  const commentContainer = document.createElement("div");
+  commentContainer.classList.add("comment");
+
+  const commentAvatarSection = document.createElement("div");
+  commentAvatarSection.classList.add("comment__avatar-section");
+
+  const commentAvatar = document.createElement("img");
+  commentAvatar.classList.add("comment__avatar");
+  commentAvatar.setAttribute("src", "./assets/images/Mohan-muruge.jpg");
+  commentAvatar.setAttribute("alt", "CW");
+  // Place the avatar in to the avatar section
+  commentAvatarSection.appendChild(commentAvatar);
+
+  const commentArea = document.createElement("div");
+
+  const commentTitle = document.createElement("div");
+  commentTitle.classList.add("comment__title");
+
+  const commentName = document.createElement("span");
+  commentName.classList.add("comment__name");
+  commentName.innerText = commentDetails.name;
+
+  const commentDate = document.createElement("span");
+  commentDate.classList.add("comment__date");
+  commentDate.innerText = commentDetails.date;
+  // Place name and date into title area of comment
+  commentTitle.appendChild(commentName);
+  commentTitle.appendChild(commentDate);
+
+  const comment = document.createElement("p");
+  comment.classList.add("comment__comment");
+  comment.innerText = commentDetails.comment;
+
+  // Place title area and comment in to comment area
+  commentArea.appendChild(commentTitle);
+  commentArea.appendChild(comment);
+
+  // Place comment avatar section and comment area in to comment container
+  commentContainer.appendChild(commentAvatarSection);
+  commentContainer.appendChild(commentArea);
+
+  // Place comment container in to index.html
+  const postedCommentsSection = document.querySelector(".posted-comments");
+  postedCommentsSection.appendChild(commentContainer);
+};
+
+const parseArr = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    postComment(arr[i]);
+  }
+};
+
+parseArr(comments);
