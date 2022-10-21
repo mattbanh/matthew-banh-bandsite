@@ -123,13 +123,10 @@
     object-fit: cover;
     object-position: left;
   }
-  &__form {
+  &__container {
     width: 100%;
   }
-  &__container {
-    padding: 0;
-    border: none;
-  }
+
   &__label {
     font-size: 0.625rem;
     font-weight: 600;
@@ -160,6 +157,9 @@
       outline: 1px solid #d22d2d;
     }
   }
+  &__submit {
+    display: block;
+  }
   &__submit-button {
     text-transform: uppercase;
     padding: 0.75rem;
@@ -181,7 +181,7 @@
 .posted-comments {
   border-top: 1px solid colors.$secondary-grey;
 }
-/* styling for individual posted comments */
+/* styling for individual posted comments added by JavaScript*/
 .comment {
   border-bottom: 1px solid colors.$secondary-grey;
   display: flex;
@@ -199,7 +199,6 @@
     height: 2.25rem;
     object-fit: cover;
     object-position: left;
-    background: colors.$secondary-grey;
   }
   &__name {
     font-size: 0.875rem;
@@ -290,6 +289,65 @@
       height: 100%;
     }
   }
+
+  .comments {
+    padding: 3rem 2.25rem 0;
+    &__title {
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+  .comments-form {
+    display: flex;
+    gap: 0.75rem;
+    margin: 1.5rem 3.75rem;
+    &__avatar {
+      width: 3rem;
+      height: 3rem;
+    }
+    &__label {
+      font-size: 0.75rem;
+    }
+    &__input,
+    &__textarea {
+      font-size: 0.875rem;
+      padding: 0.875rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+    &__submit {
+      width: 100%;
+      display: flex;
+      justify-content: right;
+    }
+    &__submit-button {
+      width: 9.5rem;
+    }
+  }
+
+  .posted-comments {
+    border-top: 2px solid colors.$secondary-grey;
+    margin: 0 3.75rem 2rem;
+  }
+
+  .comment {
+    border-bottom: 2px solid colors.$secondary-grey;
+    padding: 1.55rem 0;
+    gap: 0.75rem;
+    &__avatar {
+      width: 3rem;
+      height: 3rem;
+    }
+    &__name {
+      font-size: 0.875rem;
+    }
+    &__date {
+      font-size: 0.875rem;
+    }
+    &__comment {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+  }
 }
 
 @include breakpoints.large {
@@ -339,6 +397,45 @@
     }
     &__image-container {
       flex-basis: 31.5%;
+    }
+  }
+  .comments {
+    padding: 3rem 8rem 1rem;
+    &__title {
+      margin-bottom: 2.25rem;
+    }
+  }
+  .comments-form {
+    display: flex;
+    gap: 0.875rem;
+    width: 39vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .posted-comments {
+    border-top: 2px solid colors.$secondary-grey;
+    margin: 0 auto 2rem;
+    width: 39vw;
+  }
+
+  .comment {
+    border-bottom: 2px solid colors.$secondary-grey;
+    padding: 1.55rem 0;
+    gap: 0.875rem;
+    &__avatar {
+      width: 3rem;
+      height: 3rem;
+    }
+    &__name {
+      font-size: 0.875rem;
+    }
+    &__date {
+      font-size: 0.875rem;
+    }
+    &__comment {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
     }
   }
 }

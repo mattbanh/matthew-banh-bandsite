@@ -55,7 +55,7 @@ comments = [
 
 // Create a function which adds comment blocks following a specific structure. Comment blocks will be filled with information from the array above
 
-const postComment = (commentDetails) => {
+const postComments = (commentDetails) => {
   const commentContainer = document.createElement("div");
   commentContainer.classList.add("comment");
 
@@ -104,7 +104,7 @@ const postComment = (commentDetails) => {
 
 const parseArr = (arr) => {
   for (let i = 0; i < arr.length; i++) {
-    postComment(arr[i]);
+    postComments(arr[i]);
   }
 };
 

@@ -237,12 +237,8 @@
   -o-object-position: left;
      object-position: left;
 }
-.comments-form__form {
-  width: 100%;
-}
 .comments-form__container {
-  padding: 0;
-  border: none;
+  width: 100%;
 }
 .comments-form__label {
   font-size: 0.625rem;
@@ -281,6 +277,9 @@
 .comments-form__input:invalid, .comments-form__textarea:invalid {
   outline: 1px solid #d22d2d;
 }
+.comments-form__submit {
+  display: block;
+}
 .comments-form__submit-button {
   text-transform: uppercase;
   padding: 0.75rem;
@@ -302,7 +301,7 @@
   border-top: 1px solid #e1e1e1;
 }
 
-/* styling for individual posted comments */
+/* styling for individual posted comments added by JavaScript*/
 .comment {
   border-bottom: 1px solid #e1e1e1;
   display: flex;
@@ -323,7 +322,6 @@
      object-fit: cover;
   -o-object-position: left;
      object-position: left;
-  background: #e1e1e1;
 }
 .comment__name {
   font-size: 0.875rem;
@@ -413,6 +411,61 @@
     width: 100%;
     height: 100%;
   }
+  .comments {
+    padding: 3rem 2.25rem 0;
+  }
+  .comments__title {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .comments-form {
+    display: flex;
+    gap: 0.75rem;
+    margin: 1.5rem 3.75rem;
+  }
+  .comments-form__avatar {
+    width: 3rem;
+    height: 3rem;
+  }
+  .comments-form__label {
+    font-size: 0.75rem;
+  }
+  .comments-form__input, .comments-form__textarea {
+    font-size: 0.875rem;
+    padding: 0.875rem 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .comments-form__submit {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+  }
+  .comments-form__submit-button {
+    width: 9.5rem;
+  }
+  .posted-comments {
+    border-top: 2px solid #e1e1e1;
+    margin: 0 3.75rem 2rem;
+  }
+  .comment {
+    border-bottom: 2px solid #e1e1e1;
+    padding: 1.55rem 0;
+    gap: 0.75rem;
+  }
+  .comment__avatar {
+    width: 3rem;
+    height: 3rem;
+  }
+  .comment__name {
+    font-size: 0.875rem;
+  }
+  .comment__date {
+    font-size: 0.875rem;
+  }
+  .comment__comment {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
 }
 @media only screen and (min-width: 1280px) {
   /* hero section - desktop */
@@ -461,6 +514,43 @@
   }
   .photo-gallery__image-container {
     flex-basis: 31.5%;
+  }
+  .comments {
+    padding: 3rem 8rem 1rem;
+  }
+  .comments__title {
+    margin-bottom: 2.25rem;
+  }
+  .comments-form {
+    display: flex;
+    gap: 0.875rem;
+    width: 39vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .posted-comments {
+    border-top: 2px solid #e1e1e1;
+    margin: 0 auto 2rem;
+    width: 39vw;
+  }
+  .comment {
+    border-bottom: 2px solid #e1e1e1;
+    padding: 1.55rem 0;
+    gap: 0.875rem;
+  }
+  .comment__avatar {
+    width: 3rem;
+    height: 3rem;
+  }
+  .comment__name {
+    font-size: 0.875rem;
+  }
+  .comment__date {
+    font-size: 0.875rem;
+  }
+  .comment__comment {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
   }
 }
 /* CSS for footer */
