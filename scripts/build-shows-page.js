@@ -31,25 +31,12 @@ shows = [
   },
 ];
 
-//   <div class="show">
-//     <h4 class="show__subheader">Date</h4>
-//     <span class="show__info">Mon Sept 06 2021</span>
-//     <h4 class="show__subheader">Venue</h4>
-//     <span class="show__info">Ronald Lane</span>
-//     <h4 class="show__subheader">Location</h4>
-//     <span class="show__info">San Francisco, CA</span>
-//     <a
-//       href="https://www.ticketmaster.ca/"
-//       target="_blank"
-//       class="show__button"
-//       >BUY TICKETS</a
-//     >
-//   </div>
-
 const listShows = (showDetails) => {
+  // create show card
   const show = document.createElement("div");
   show.classList.add("show");
 
+  // loop through key:value pairs and populate the card with show information
   for (const key in showDetails) {
     const showSubheader = document.createElement("h4");
     showSubheader.classList.add("show__subheader");
@@ -66,6 +53,7 @@ const listShows = (showDetails) => {
     show.appendChild(showInfo);
   }
 
+  //   create show card buy tickets button that leads to ticketmaster
   const showButton = document.createElement("a");
   showButton.classList.add("show__button");
   showButton.setAttribute("href", "https://www.ticketmaster.ca/");

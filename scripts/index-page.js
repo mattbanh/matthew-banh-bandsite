@@ -1,37 +1,3 @@
-// You must have an array in JavaScript with 3 default comment objects to start.
-// Comments must have a name, a timestamp, and the comment text.
-//
-// You must have a function called displayComment() that
-// takes in one comment object as a parameter and displays it
-// on the page using JavaScript DOM manipulation.
-//
-// No template literals should be used.
-// All dynamic HTML should be added to DOM via DOM Methods for individual elements.
-// Avoid bulk assigning stringified HTML using innerHTML
-
-//  <div class="comment">
-//     <div class="comment__avatar-section">
-//         <!-- NEED TO ADD JAVASCRIPT TO REPLACE BROKEN IMAGE -->
-//         <img
-//         class="comment__avatar"
-//         src="./assets/images/Mohan-muruge.jpg"
-//         alt="CW"
-//         />
-//     </div>
-//     <div>
-//         <div class="comment__title">
-//          <span class="comment__name">Connor Walton</span>
-//          <span class="comment__date">02/17/2021</span>
-//         </div>
-//         <p class="comment__comment">
-//         This is art. This is inexplicable magic expressed in the purest
-//         way, everything that makes up this majestic work deserves
-//         reverence. Let us appreciate this for what it is and what it
-//         contains.
-//         </p>
-//     </div>
-// </div>
-
 comments = [
   {
     name: "Connor Walton",
@@ -54,7 +20,6 @@ comments = [
 ];
 
 // Create a function which adds comment blocks following a specific structure. Comment blocks will be filled with information from the array above
-
 const postComments = (commentDetails) => {
   const commentContainer = document.createElement("div");
   commentContainer.classList.add("comment");
@@ -70,6 +35,7 @@ const postComments = (commentDetails) => {
   commentAvatarSection.appendChild(commentAvatar);
 
   const commentArea = document.createElement("div");
+  commentArea.classList.add("comment__comment-container");
 
   const commentTitle = document.createElement("div");
   commentTitle.classList.add("comment__title");
@@ -99,9 +65,17 @@ const postComments = (commentDetails) => {
 
   // Place comment container in to index.html
   const postedCommentsSection = document.querySelector(".posted-comments");
-  postedCommentsSection.appendChild(commentContainer);
+  if (postedCommentsSection.innerText === "") {
+    console.log("True");
+    postedCommentsSection.appendChild(commentContainer);
+    console.log(postedCommentsSection.innerText);
+  } else {
+    console.log("false" + postedCommentsSection.innerText);
+    postedCommentsSection.prepend(commentContainer);
+  }
 };
 
+// function which sends pieces of array to another function
 const parseArr = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     postComments(arr[i]);
@@ -109,3 +83,23 @@ const parseArr = (arr) => {
 };
 
 parseArr(comments);
+
+// function which takes submitted comment and adds to the top of the posted comments
+
+const form = document.querySelector("#comments-form__form");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let authorName = event.target.name.value;
+  const currentDate = new Date();
+  let authorDate = currentDate.toLocaleDateString();
+  let authorComment = event.target.comment.value;
+
+  const newComment = {
+    name: authorName,
+    date: authorDate,
+    comment: authorComment,
+  };
+  console.log(newComment);
+  return postComments(newComment);
+});

@@ -24,7 +24,7 @@
             <a class="header-nav__item" href="./index.html">Biography</a>
           </li>
           <li class="header-nav__section">
-            <a class="header-nav__item" href="./shows.html">Shows</a>
+            <a class="header-nav__item" href="./pages/shows.html">Shows</a>
           </li>
         </ul>
       </nav>
@@ -166,7 +166,8 @@
             />
           </div>
           <div class="comments-form__container">
-            <form>
+            <form id="comments-form__form">
+              <input type="hidden" name="Language" id="dateHidden" />
               <label class="comments-form__label" for="comments-form__name"
                 >Name</label
               >
@@ -174,7 +175,7 @@
                 class="comments-form__input"
                 type="text"
                 id="comments-form__name"
-                name="comments-form__name"
+                name="name"
                 placeholder="Enter your name"
               />
               <label class="comments-form__label" for="comments-form__comment"
@@ -183,7 +184,7 @@
               <textarea
                 class="comments-form__textarea"
                 id="comments-form__comment"
-                name="comments-form__comment"
+                name="comment"
                 rows="5"
                 placeholder="Add a new comment"
               ></textarea>

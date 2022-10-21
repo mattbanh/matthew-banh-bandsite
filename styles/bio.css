@@ -308,8 +308,10 @@
   gap: 1rem;
   padding: 1rem 0;
 }
-.comment__title {
+.comment__comment-container {
   width: 100%;
+}
+.comment__title {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
@@ -324,16 +326,19 @@
      object-position: left;
 }
 .comment__name {
+  display: inline-block;
   font-size: 0.875rem;
   font-weight: 600;
   color: #323232;
 }
 .comment__date {
+  display: inline-block;
   font-size: 0.8125rem;
   font-weight: 400;
   color: #afafaf;
 }
 .comment__comment {
+  width: 100%;
   font-size: 0.8125rem;
   font-weight: 400;
   color: #323232;
