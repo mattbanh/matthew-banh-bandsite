@@ -52,6 +52,8 @@ const listShows = (showDetails) => {
     showInfo.innerText = showDetails[key];
     show.appendChild(showInfo);
   }
+  const showButtonContainer = document.createElement("div");
+  showButtonContainer.classList.add("show__button-container");
 
   //   create show card buy tickets button that leads to ticketmaster
   const showButton = document.createElement("a");
@@ -60,7 +62,9 @@ const listShows = (showDetails) => {
   showButton.setAttribute("target", "_blank");
   showButton.innerText = "buy tickets";
 
-  show.appendChild(showButton);
+  showButtonContainer.appendChild(showButton);
+
+  show.appendChild(showButtonContainer);
 
   const showsList = document.querySelector(".shows-list");
   showsList.appendChild(show);
@@ -73,3 +77,12 @@ const parseArr = (arr) => {
 };
 
 parseArr(shows);
+
+// function to change colour on select
+const showList = document.querySelectorAll(".show");
+showList.forEach((show) => {
+  show.addEventListener("click", (showSelected) => {
+    showList.forEach((show) => show.classList.remove("show--selected"));
+    showSelected.currentTarget.classList.toggle("show--selected");
+  });
+});

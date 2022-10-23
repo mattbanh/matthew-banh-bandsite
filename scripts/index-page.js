@@ -4,23 +4,26 @@ comments = [
     date: "02/17/2021",
     comment:
       "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
+    avatar: "",
   },
   {
     name: "Emilie Beach",
     date: "01/09/2021",
     comment:
       "I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
+    avatar: "",
   },
   {
     name: "Miles Acosta",
     date: "12/20/2020",
     comment:
-      "I can't stop listening. Every time I hear one of their songs - the vocals - it give sme goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
+      "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
+    avatar: "",
   },
 ];
 
 // Create a function which adds comment blocks following a specific structure. Comment blocks will be filled with information from the array above
-const postComments = (commentDetails) => {
+const displayComments = (commentDetails) => {
   const commentContainer = document.createElement("div");
   commentContainer.classList.add("comment");
 
@@ -29,8 +32,12 @@ const postComments = (commentDetails) => {
 
   const commentAvatar = document.createElement("img");
   commentAvatar.classList.add("comment__avatar");
-  commentAvatar.setAttribute("src", "./assets/images/Mohan-muruge.jpg");
-  commentAvatar.setAttribute("alt", "CW");
+  if (commentDetails.avatar !== "") {
+    commentAvatar.setAttribute("src", commentDetails.avatar);
+  } else {
+    commentAvatar.setAttribute("src", "../assets/images/default-avatar.svg");
+  }
+  commentAvatar.setAttribute("alt", "user avatar");
   // Place the avatar in to the avatar section
   commentAvatarSection.appendChild(commentAvatar);
 
@@ -66,40 +73,60 @@ const postComments = (commentDetails) => {
   // Place comment container in to index.html
   const postedCommentsSection = document.querySelector(".posted-comments");
   if (postedCommentsSection.innerText === "") {
-    console.log("True");
+    // checks if commentContainer is empty, if it is, it should append the first child
     postedCommentsSection.appendChild(commentContainer);
-    console.log(postedCommentsSection.innerText);
   } else {
-    console.log("false" + postedCommentsSection.innerText);
+    // if commentContainer is not empty, prepend can work to add newer comment above older comment
     postedCommentsSection.prepend(commentContainer);
   }
 };
 
 // function which sends pieces of array to another function
 const parseArr = (arr) => {
+  // sorts comments by date so that oldest comments are posted at bottom
+  arr.sort((a, b) => {
+    let da = new Date(a.date);
+    let db = new Date(b.date);
+    return da - db;
+  });
+  // loops through array and sends objects to function which will render the comments
   for (let i = 0; i < arr.length; i++) {
-    postComments(arr[i]);
+    displayComments(arr[i]);
   }
 };
 
+// call the parseArr function to sort and post comments
 parseArr(comments);
 
-// function which takes submitted comment and adds to the top of the posted comments
-
+// function which takes submitted comment and adds to comments array,
+// which is then put in to parseArr and displayComments functions to re-render comments
 const form = document.querySelector("#comments-form__form");
-
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+
+  // pulling event targets
   let authorName = event.target.name.value;
   const currentDate = new Date();
   let authorDate = currentDate.toLocaleDateString();
   let authorComment = event.target.comment.value;
-
+  let authorAvatar = document.querySelector(".comments-form__avatar").src;
+  console.log(authorAvatar);
+  // building new object to be inserted in to array
   const newComment = {
     name: authorName,
     date: authorDate,
     comment: authorComment,
+    avatar: authorAvatar,
   };
-  console.log(newComment);
-  return postComments(newComment);
+  // insert object in to array
+  comments.push(newComment);
+  // clear form
+  document.getElementById("comments-form__form").reset();
+  // clear posted comments
+  const postedCommentsSection = document.querySelector(".posted-comments");
+  while (postedCommentsSection.hasChildNodes()) {
+    postedCommentsSection.removeChild(postedCommentsSection.lastChild);
+  }
+  //  execute parseArr to sort array and executs displayComments which will re-render comments with newest on top
+  parseArr(comments);
 });
