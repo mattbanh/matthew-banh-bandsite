@@ -1,0 +1,536 @@
+/* Regular */
+@font-face {
+  font-family: "Avenir Next";
+  src: url(../assets/fonts/avenir-next-regular-400.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+/* Demi */
+@font-face {
+  font-family: "Avenir Next";
+  src: url(../assets/fonts/avenir-next-demi-600.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+/* Bold */
+@font-face {
+  font-family: "Avenir Next";
+  src: url(../assets/fonts/avenir-next-bold-700.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+/* Primary colours for text and backgrounds */
+/* Secondary colours for other elements and background */
+/* mobile media query */
+/* tablet media query */
+/* desktop media query */
+/* CSS for header and navigation */
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
+.header {
+  background-color: #323232;
+}
+
+.header-logo {
+  padding: 1rem 0 0;
+  margin: 0 1rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-logo__logo {
+  max-width: 7.5rem;
+  max-height: 1.25rem;
+}
+
+.header-nav__list {
+  height: 100%;
+  list-style-type: none;
+  display: flex;
+  margin-left: -2.5rem;
+}
+.header-nav__section {
+  width: 100%;
+  padding-bottom: 0.625rem;
+  border-bottom: 3px solid transparent;
+  transition: 0.15s;
+}
+.header-nav__section--active {
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 3px solid #ffffff;
+}
+.header-nav__section:hover {
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 3px solid #ffffff;
+}
+.header-nav__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  color: #e1e1e1;
+}
+
+/* media query for tablet */
+@media only screen and (min-width: 768px) {
+  .header {
+    display: flex;
+    justify-content: baseline;
+  }
+  .header-logo {
+    padding: 0;
+    margin: 1.375rem 4rem 1.375rem 2.25rem;
+  }
+  .header-logo__logo {
+    max-width: 7.5rem;
+    max-height: 1.25rem;
+  }
+  .header-nav__section {
+    margin-right: 3.375rem;
+    align-items: center;
+    padding-bottom: 0rem;
+  }
+  .header-nav__section--active {
+    border-bottom-width: 4px;
+  }
+  .header-nav__section:hover {
+    border-bottom-width: 4px;
+  }
+  .header-nav__item {
+    font-size: 0.875rem;
+  }
+}
+/* media query for desktop */
+@media only screen and (min-width: 1280px) {
+  .header-logo {
+    margin: 1.875rem 3.75rem 1.875rem 8.125rem;
+  }
+  .header-nav__section {
+    margin-right: 2rem;
+  }
+}
+/* CSS for main section of bandsite shows page */
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
+/* hero section - mobile */
+.shows-hero {
+  color: #ffffff;
+  background: center/cover no-repeat url(../assets/images/hero-shows.jpg);
+}
+.shows-hero__overlay {
+  padding: 2rem 1rem;
+  background-color: rgba(50, 50, 50, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.shows-hero__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02rem;
+  margin-bottom: 1rem;
+  line-height: 2rem;
+}
+.shows-hero__subheader {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.shows-hero__soundcloud {
+  width: 100%;
+  height: 6.25rem;
+  border: none;
+}
+
+/* shows section - mobile */
+.shows-schedule {
+  color: #323232;
+  padding: 2rem 0 1rem;
+}
+.shows-schedule__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02rem;
+  padding: 0 1rem;
+}
+
+.shows-list__subheader-container {
+  display: none;
+}
+
+.show {
+  border-bottom: 1px solid #e1e1e1;
+  padding: 1rem;
+}
+.show__subheader {
+  text-transform: uppercase;
+  font-size: 0.625rem;
+  color: #afafaf;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+.show__info {
+  font-size: 0.8125rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+.show__info-date {
+  font-weight: 600;
+}
+.show__button-container {
+  margin: 0;
+}
+.show__button {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #323232;
+  display: block;
+  padding: 0.75rem;
+  text-align: center;
+  border-radius: 4px;
+}
+.show__button:hover {
+  background-color: #000000;
+}
+.show:hover {
+  background-color: #fafafa;
+  cursor: pointer;
+}
+.show--selected {
+  border-bottom: 1px solid #e1e1e1;
+  padding: 1rem;
+  background-color: #e1e1e1;
+}
+.show--selected:hover {
+  background-color: #e1e1e1;
+}
+
+/* MEDIA QUERY FOR TABLET */
+@media only screen and (min-width: 768px) {
+  /* hero section - tablet */
+  .shows-hero__overlay {
+    padding: 3.5rem 2rem;
+  }
+  .shows-hero__title {
+    width: 80%;
+    font-size: 3.625rem;
+    letter-spacing: 0.1rem;
+    line-height: 4.25rem;
+    margin-bottom: 3rem;
+  }
+  .shows-hero__subheader {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .shows-hero__soundcloud {
+    width: 60%;
+    height: 8.75rem;
+  }
+  /* shows section - tablet */
+  .shows-schedule {
+    margin: 2.75rem 1rem 2.25rem;
+    padding: 0;
+  }
+  .shows-schedule__title {
+    font-size: 2.25rem;
+    padding: 0 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .shows-list__subheader-container {
+    width: 100%;
+    padding: 0 1.25rem;
+    display: flex;
+  }
+  .shows-list__subheader, .shows-list__subheader-date {
+    width: 25%;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: #afafaf;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+  .show {
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+  }
+  .show__subheader {
+    display: none;
+  }
+  .show__info {
+    font-size: 0.875rem;
+    margin: 0;
+    width: 25%;
+  }
+  .show__info-date {
+    font-weight: 600;
+  }
+  .show__button-container {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .show__button {
+    width: 9.5rem;
+  }
+}
+/* MEDIA QUERY FOR DESKTOP */
+@media only screen and (min-width: 1280px) {
+  /* hero section - desktop */
+  .shows-hero {
+    height: 39rem;
+  }
+  .shows-hero__overlay {
+    padding: 3.5rem 8rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .shows-hero__title-container {
+    width: 50%;
+  }
+  .shows-hero__title {
+    width: 100%;
+  }
+  .shows-hero__subheader {
+    margin-bottom: 1.125rem;
+  }
+  .shows-hero__soundcloud-container {
+    display: inline-block;
+    width: 40%;
+  }
+  .shows-hero__soundcloud {
+    width: 100%;
+    height: 8.75rem;
+  }
+  /* shows section - desktop*/
+  .shows-schedule {
+    margin: 2.75rem 6.75rem 2.25rem 8rem;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 8rem;
+  }
+  .shows-schedule__title {
+    padding: 0;
+  }
+  .shows-list {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+  .shows-list__subheader-container {
+    margin-bottom: 1.25rem;
+  }
+  .shows-list__subheader, .shows-list__subheader-date {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: #afafaf;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+  }
+  .shows-list__subheader {
+    width: 21%;
+  }
+  .shows-list__subheader-date {
+    width: 36%;
+  }
+  .show {
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+  }
+  .show__subheader {
+    display: none;
+  }
+  .show__info {
+    font-size: 0.875rem;
+    margin: 0;
+    width: 21%;
+  }
+  .show__info-date {
+    font-weight: 600;
+    width: 36%;
+  }
+  .show__button-container {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .show__button {
+    width: 9.5rem;
+  }
+}
+/* CSS for footer */
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
+.footer {
+  background-color: #323232;
+  color: #ffffff;
+  padding: 1.625rem 1rem 1rem;
+  /* styles for text - mobile */
+  /* socials section - mobile */
+  /* contact info section - mobile */
+  /* logo and copyright - mobile */
+}
+.footer__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.footer__subheader {
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+  font-weight: 600;
+}
+.footer__text {
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+}
+.footer__span {
+  display: block;
+}
+.footer__email {
+  font-size: 0.8125rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+.footer__social-container {
+  margin-bottom: 1.25rem;
+}
+.footer__social {
+  width: 7.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+.footer__social-icon {
+  height: 1.375rem;
+}
+.footer__contact-container {
+  margin-bottom: 4rem;
+}
+.footer__contact {
+  list-style-type: none;
+  margin-left: -2.5rem;
+  margin-bottom: 1.5rem;
+}
+.footer__list {
+  margin-bottom: 1rem;
+}
+.footer__logo {
+  margin-bottom: 0.5rem;
+}
+.footer__copyright {
+  font-size: 0.675rem;
+}
+
+/* MEDIA QUERY FOR TABLET */
+@media only screen and (min-width: 768px) {
+  .footer {
+    padding: 3rem 2.25rem 2.25rem;
+    position: relative;
+    /* styles for text - tablet */
+    /* socials section - tablet */
+    /* contact section - tablet */
+    /* logo and copyright - tablet */
+  }
+  .footer__title {
+    font-size: 2.25rem;
+    margin-bottom: 0;
+  }
+  .footer__subheader {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  .footer__text {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  .footer__email {
+    font-size: 0.875rem;
+  }
+  .footer__social-container {
+    display: flex;
+    align-items: baseline;
+    gap: 1.75rem;
+    margin-bottom: 2.25rem;
+  }
+  .footer__social {
+    margin-bottom: 0rem;
+  }
+  .footer__contact-container {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 1.625rem;
+  }
+  .footer__contact {
+    margin-bottom: 0rem;
+  }
+  .footer__list {
+    margin-bottom: 1.5rem;
+  }
+  .footer__logo {
+    margin-bottom: 0rem;
+    position: absolute;
+    top: 4rem;
+    right: 2.25rem;
+  }
+  .footer__copyright {
+    font-size: 0.875rem;
+  }
+}
+/* MEDIA QUERY FOR DESKTOP */
+@media only screen and (min-width: 1280px) {
+  .footer {
+    padding: 2.75rem 8rem 2.25rem;
+    /* styles for text - desktop */
+    /* socials section - desktop */
+    /* contact section - desktop */
+    /* logo and copyright - desktop */
+  }
+  .footer__email {
+    font-size: 0.875rem;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .footer__social-container {
+    gap: 3rem;
+    margin-bottom: 2.125rem;
+  }
+  .footer__contact-container {
+    gap: 4rem;
+  }
+  .footer__logo {
+    top: 4rem;
+    right: 8.125rem;
+  }
+}
+/* body level resets and settings */
+html,
+body {
+  margin: 0;
+  font-family: "Avenir Next";
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* remove default margins for more control of spacing */
+h1,
+h2,
+h3,
+a,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}/*# sourceMappingURL=shows.css.map */
