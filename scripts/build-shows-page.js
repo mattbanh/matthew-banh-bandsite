@@ -31,27 +31,37 @@ shows = [
   },
 ];
 
-const listShows = (showDetails) => {
-  // create show card
-  const show = document.createElement("div");
-  show.classList.add("show");
-
-  // loop through key:value pairs and populate the card with show information
+// function to show information before returning to listShows function
+const buildShow = (showDetails, show) => {
   for (const key in showDetails) {
+    // create subheaders for mobile version of shows page
     const showSubheader = document.createElement("h4");
     showSubheader.classList.add("show__subheader");
-
     showSubheader.innerText = key;
     show.appendChild(showSubheader);
-    const showInfo = document.createElement("span");
 
+    // populate show with date, venue, location information
+    const showInfo = document.createElement("span");
     showInfo.classList.add("show__info");
+    // if statement to account for the date, which has different display properties
     if (key === "date") {
       showInfo.classList.add("show__info-date");
     }
     showInfo.innerText = showDetails[key];
     show.appendChild(showInfo);
   }
+  // return show with show information to be listed on website
+  return show;
+};
+
+// function to list shows on shows page
+const listShows = (showDetails) => {
+  // create show card
+  const show = document.createElement("div");
+  show.classList.add("show");
+
+  let show2 = buildShow(showDetails, show);
+
   const showButtonContainer = document.createElement("div");
   showButtonContainer.classList.add("show__button-container");
 
@@ -66,23 +76,46 @@ const listShows = (showDetails) => {
 
   show.appendChild(showButtonContainer);
 
+  // find and append show HTML to show page so it can be displayed
   const showsList = document.querySelector(".shows-list");
   showsList.appendChild(show);
 };
 
+// function which converts date from string to date and then sorts array by ascending date
+const sortArrayByDate = (arr) =>
+  arr.sort((a, b) => {
+    let aDate = new Date(a.date);
+    let bDate = new Date(b.date);
+    return aDate - bDate;
+  });
+
+// function which sends pieces of array to another function
 const parseArr = (arr) => {
+  let sortedArray = sortArrayByDate(arr);
   for (let i = 0; i < arr.length; i++) {
     listShows(arr[i]);
   }
 };
 
+// call the parseArr function to sort and list shows
 parseArr(shows);
 
-// function to change colour on select
-const showList = document.querySelectorAll(".show");
-showList.forEach((show) => {
-  show.addEventListener("click", (showSelected) => {
-    showList.forEach((show) => show.classList.remove("show--selected"));
-    showSelected.currentTarget.classList.toggle("show--selected");
-  });
-});
+// function to remove show-selected class from all and toggle show-selected on click
+const addShowSelected = (showList, show, showSelected) => {
+  showList.forEach((show) => show.classList.remove("show--selected"));
+  showSelected.currentTarget.classList.toggle("show--selected");
+};
+
+// function to add click event listener and pass selected elements to addShowSelected
+const addClickEvent = (show, showList) => {
+  show.addEventListener("click", (showSelected) =>
+    addShowSelected(showList, show, showSelected)
+  );
+};
+
+// function to "highlight" the background of a selected show
+const highlightShow = () => {
+  const showList = document.querySelectorAll(".show");
+  showList.forEach((show) => addClickEvent(show, showList));
+};
+highlightShow();

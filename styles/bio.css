@@ -274,11 +274,24 @@
 .comments-form__input:focus, .comments-form__textarea:focus {
   outline: 1px solid #323232;
 }
-.comments-form__input:invalid, .comments-form__textarea:invalid {
+.comments-form__input--invalid {
+  outline: 1px solid #d22d2d;
+}
+.comments-form__input--invalid::-moz-placeholder {
+  color: #d22d2d;
+}
+.comments-form__input--invalid:-ms-input-placeholder {
+  color: #d22d2d;
+}
+.comments-form__input--invalid::placeholder {
+  color: #d22d2d;
+}
+.comments-form__input--invalid:focus {
   outline: 1px solid #d22d2d;
 }
 .comments-form__submit {
   display: block;
+  cursor: pointer;
 }
 .comments-form__submit-button {
   text-transform: uppercase;
@@ -521,7 +534,7 @@
     flex-basis: 31.5%;
   }
   .comments {
-    padding: 3rem 8rem 1rem;
+    padding: 3rem 8rem 0;
   }
   .comments__title {
     margin-bottom: 2.25rem;

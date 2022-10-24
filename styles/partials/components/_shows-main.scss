@@ -2,6 +2,10 @@
 @use "../colors" as colors;
 @use "../breakpoints" as breakpoints;
 
+/* CSS for main section of bandsite shows page */
+
+/* MOBILE VERSIONS UNTIL TABLET MEDIA QUERY */
+/* hero section - mobile */
 .shows-hero {
   color: colors.$primary-white;
   background: center / cover no-repeat url(../assets/images/hero-shows.jpg);
@@ -35,6 +39,7 @@
   }
 }
 
+/* shows section - mobile */
 .shows-schedule {
   color: colors.$primary-dark;
   padding: 2rem 0 1rem;
@@ -82,6 +87,9 @@
     padding: 0.75rem;
     text-align: center;
     border-radius: 4px;
+    &:hover {
+      background-color: colors.$secondary-dark;
+    }
   }
   &:hover {
     background-color: colors.$secondary-white;
@@ -99,6 +107,7 @@
 
 /* MEDIA QUERY FOR TABLET */
 @include breakpoints.medium {
+  /* hero section - tablet */
   .shows-hero {
     &__overlay {
       padding: 3.5rem 2rem;
@@ -120,6 +129,7 @@
     }
   }
 
+  /* shows section - tablet */
   .shows-schedule {
     margin: 2.75rem 1rem 2.25rem;
     padding: 0;
@@ -136,7 +146,8 @@
       padding: 0 1.25rem;
       display: flex;
     }
-    &__subheader {
+    &__subheader,
+    &__subheader-date {
       width: 25%;
       text-transform: uppercase;
       font-size: 0.75rem;
@@ -173,6 +184,7 @@
 
 /* MEDIA QUERY FOR DESKTOP */
 @include breakpoints.large {
+  /* hero section - desktop */
   .shows-hero {
     height: 39rem;
     &__overlay {
@@ -199,7 +211,7 @@
       height: 8.75rem;
     }
   }
-
+  /* shows section - desktop*/
   .shows-schedule {
     margin: 2.75rem 6.75rem 2.25rem 8rem;
     padding: 0;
@@ -217,13 +229,19 @@
     &__subheader-container {
       margin-bottom: 1.25rem;
     }
-    &__subheader {
-      width: 25%;
+    &__subheader,
+    &__subheader-date {
       text-transform: uppercase;
       font-size: 0.75rem;
       color: colors.$primary-grey;
       margin-bottom: 0.25rem;
       font-weight: 600;
+    }
+    &__subheader {
+      width: 21%;
+    }
+    &__subheader-date {
+      width: 36%;
     }
   }
   .show {
@@ -237,10 +255,11 @@
     &__info {
       font-size: 0.875rem;
       margin: 0;
-      width: 25%;
+      width: 21%;
     }
     &__info-date {
       font-weight: 600;
+      width: 36%;
     }
     &__button-container {
       margin-left: auto;

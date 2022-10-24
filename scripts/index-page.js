@@ -35,7 +35,7 @@ const displayComments = (commentDetails) => {
   if (commentDetails.avatar !== "") {
     commentAvatar.setAttribute("src", commentDetails.avatar);
   } else {
-    commentAvatar.setAttribute("src", "../assets/images/default-avatar.svg");
+    commentAvatar.setAttribute("src", "./assets/images/default-avatar.svg");
   }
   commentAvatar.setAttribute("alt", "user avatar");
   // Place the avatar in to the avatar section
@@ -81,14 +81,17 @@ const displayComments = (commentDetails) => {
   }
 };
 
+// function which converts date from string to date and then sorts array by ascending date
+const sortArrayByDate = (arr) =>
+  arr.sort((a, b) => {
+    let aDate = new Date(a.date);
+    let bDate = new Date(b.date);
+    return aDate - bDate;
+  });
+
 // function which sends pieces of array to another function
 const parseArr = (arr) => {
-  // sorts comments by date so that oldest comments are posted at bottom
-  arr.sort((a, b) => {
-    let da = new Date(a.date);
-    let db = new Date(b.date);
-    return da - db;
-  });
+  let sortedArray = sortArrayByDate(arr);
   // loops through array and sends objects to function which will render the comments
   for (let i = 0; i < arr.length; i++) {
     displayComments(arr[i]);
@@ -98,35 +101,89 @@ const parseArr = (arr) => {
 // call the parseArr function to sort and post comments
 parseArr(comments);
 
+// function to clear children from a parent element
+const clearChildren = (parentElement) => {
+  while (parentElement.hasChildNodes()) {
+    parentElement.removeChild(parentElement.firstChild);
+  }
+};
+
+const form = document.querySelector("#comments-form__form");
+const formName = document.getElementById("comments-form__name");
+const formComment = document.getElementById("comments-form__comment");
+
+// function to check if form is valid
+const formValidation = () => {
+  if (formName.value === "" && formComment.value === "") {
+    formName.classList.add("comments-form__input--invalid");
+    formName.setAttribute("placeholder", "Please enter your name");
+    formComment.classList.add("comments-form__input--invalid");
+    formComment.setAttribute("placeholder", "Please enter your comment");
+    return false;
+  } else if (formName.value === "") {
+    formName.classList.add("comments-form__input--invalid");
+    formName.setAttribute("placeholder", "Please enter your name");
+    return false;
+  } else if (formComment.value === "") {
+    formComment.classList.add("comments-form__input--invalid");
+    formComment.setAttribute("placeholder", "Please enter your comment");
+    return false;
+  } else {
+    return true;
+  }
+};
+
+// function to reset any changes made by form validation
+const removeInvalid = () => {
+  form.addEventListener("input", (event) => {
+    if (event.target === formName) {
+      formName.setAttribute("placeholder", "Enter your name");
+      formName.classList.remove("comments-form__input--invalid");
+    }
+    if (event.target === formComment) {
+      formComment.setAttribute("placeholder", "Add a new comment");
+      formComment.classList.remove("comments-form__input--invalid");
+    }
+  });
+};
+removeInvalid();
+
 // function which takes submitted comment and adds to comments array,
 // which is then put in to parseArr and displayComments functions to re-render comments
-const form = document.querySelector("#comments-form__form");
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+const addNewComment = () => {
+  // locate comments form and add submit event listener
+  form.addEventListener("submit", (event) => {
+    // prevents refresh of page on submit
+    event.preventDefault();
+    // continues of formValidation passes
+    if (formValidation() === true) {
+      // pulling event targets to be inserted in to object
+      let authorName = event.target.name.value;
+      const currentDate = new Date();
+      let authorDate = currentDate.toLocaleDateString();
+      let authorComment = event.target.comment.value;
+      let authorAvatar = document.querySelector(".comments-form__avatar").src;
 
-  // pulling event targets
-  let authorName = event.target.name.value;
-  const currentDate = new Date();
-  let authorDate = currentDate.toLocaleDateString();
-  let authorComment = event.target.comment.value;
-  let authorAvatar = document.querySelector(".comments-form__avatar").src;
-  console.log(authorAvatar);
-  // building new object to be inserted in to array
-  const newComment = {
-    name: authorName,
-    date: authorDate,
-    comment: authorComment,
-    avatar: authorAvatar,
-  };
-  // insert object in to array
-  comments.push(newComment);
-  // clear form
-  document.getElementById("comments-form__form").reset();
-  // clear posted comments
-  const postedCommentsSection = document.querySelector(".posted-comments");
-  while (postedCommentsSection.hasChildNodes()) {
-    postedCommentsSection.removeChild(postedCommentsSection.lastChild);
-  }
-  //  execute parseArr to sort array and executs displayComments which will re-render comments with newest on top
-  parseArr(comments);
-});
+      // building new object to be inserted in to array
+      const newComment = {
+        name: authorName,
+        date: authorDate,
+        comment: authorComment,
+        avatar: authorAvatar,
+      };
+
+      // insert object in to array
+      comments.push(newComment);
+      // clear form
+      document.getElementById("comments-form__form").reset();
+      // clear posted comments
+      const postedCommentsSection = document.querySelector(".posted-comments");
+      clearChildren(postedCommentsSection);
+      //  execute parseArr to sort array and executes displayComments which will re-render comments with newest on top
+      parseArr(comments);
+    } else {
+      return;
+    }
+  });
+};
+addNewComment();

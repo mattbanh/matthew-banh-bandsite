@@ -153,12 +153,20 @@
     &:focus {
       outline: 1px solid colors.$primary-dark;
     }
-    &:invalid {
+  }
+  &__input--invalid {
+    outline: 1px solid #d22d2d;
+    &::placeholder {
+      color: #d22d2d;
+    }
+    &:focus {
       outline: 1px solid #d22d2d;
     }
   }
+
   &__submit {
     display: block;
+    cursor: pointer;
   }
   &__submit-button {
     text-transform: uppercase;
@@ -405,7 +413,7 @@
     }
   }
   .comments {
-    padding: 3rem 8rem 1rem;
+    padding: 3rem 8rem 0;
     &__title {
       margin-bottom: 2.25rem;
     }
