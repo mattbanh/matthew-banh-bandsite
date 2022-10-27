@@ -1,27 +1,30 @@
-comments = [
-  {
-    name: "Connor Walton",
-    date: "02/17/2021",
-    comment:
-      "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
-    avatar: "",
-  },
-  {
-    name: "Emilie Beach",
-    date: "01/09/2021",
-    comment:
-      "I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
-    avatar: "",
-  },
-  {
-    name: "Miles Acosta",
-    date: "12/20/2020",
-    comment:
-      "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
-    avatar: "",
-  },
-];
+// comments = [
+//   {
+//     name: "Connor Walton",
+//     date: "02/17/2021",
+//     comment:
+//       "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
+//     avatar: "",
+//   },
+//   {
+//     name: "Emilie Beach",
+//     date: "01/09/2021",
+//     comment:
+//       "I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
+//     avatar: "",
+//   },
+//   {
+//     name: "Miles Acosta",
+//     date: "12/20/2020",
+//     comment:
+//       "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
+//     avatar: "",
+//   },
+// ];
 
+// console.log(comments);
+// var1 = getComments();
+// console.log(var1);
 // Create a function which adds comment blocks following a specific structure. Comment blocks will be filled with information from the array above
 const displayComments = (commentDetails) => {
   const commentContainer = document.createElement("div");
@@ -89,17 +92,87 @@ const sortArrayByDate = (arr) =>
     return aDate - bDate;
   });
 
+const dateLeadingZero = (date) => {
+  return date.toString().padStart(2, "0");
+};
+
+const formatDate = (date) => {
+  let month = dateLeadingZero(date.getMonth() + 1);
+  let day = dateLeadingZero(date.getDate());
+  let year = date.getFullYear();
+  let formattedDate = month + "/" + day + "/" + year;
+  return formattedDate;
+};
+
+const findTimestamp = (arrObj) => {
+  for (key in arrObj) {
+    if (key === "timestamp") {
+      const date = new Date(arrObj[key]);
+      const formattedDate = formatDate(date);
+      return formattedDate;
+    }
+  }
+};
+
+const buildArr = (arr) => {
+  console.log("inside buildArr", arr);
+  commentArr = [];
+  arr.forEach((arrObj) => {
+    console.log(arrObj);
+    let commentObj = {};
+    for (key in arrObj) {
+      // console.log(key);
+      if (key === "name" || key === "comment" || key === "avatar") {
+        commentObj[key] = arrObj[key];
+      }
+    }
+    if (!("avatar" in commentObj) && (commentObj.avatar = {})) {
+      commentObj["avatar"] = "";
+    }
+    if (!("avatar" in commentObj) && (commentObj.avatar = {})) {
+      commentObj["avatar"] = "";
+    }
+    let commentDate = findTimestamp(arrObj);
+    commentObj.date = commentDate;
+    commentArr.push(commentObj);
+  });
+  return commentArr;
+};
+
+// // function which sends pieces of array to another function
+// const parseArr = (arr) => {
+//   let sortedArray = sortArrayByDate(arr);
+//   // loops through array and sends objects to function which will render the comments
+//   for (let i = 0; i < arr.length; i++) {
+//     displayComments(arr[i]);
+//   }
+// };
+
 // function which sends pieces of array to another function
 const parseArr = (arr) => {
-  let sortedArray = sortArrayByDate(arr);
+  console.log("I received the new comment");
+  console.log(arr);
+  let commentArr = buildArr(arr);
+  console.log("buildArr result: ", commentArr);
+  let sortedArr = sortArrayByDate(commentArr);
+  console.log("sortedArr result: ", sortedArr);
   // loops through array and sends objects to function which will render the comments
-  for (let i = 0; i < arr.length; i++) {
-    displayComments(arr[i]);
+  for (let i = 0; i < sortedArr.length; i++) {
+    console.log(sortedArr[i]);
+    displayComments(sortedArr[i]);
   }
 };
 
 // call the parseArr function to sort and post comments
-parseArr(comments);
+// parseArr(comments);
+
+const commentsURL =
+  "https://project-1-api.herokuapp.com/comments?api_key=55efa704-e9f8-4e33-a6e4-da1273101817";
+
+axios.get(commentsURL).then((response) => {
+  let comments = response.data;
+  parseArr(comments);
+});
 
 // function to clear children from a parent element
 const clearChildren = (parentElement) => {
@@ -150,37 +223,68 @@ removeInvalid();
 
 // function which takes submitted comment and adds to comments array,
 // which is then put in to parseArr and displayComments functions to re-render comments
+
 const addNewComment = () => {
   // locate comments form and add submit event listener
   form.addEventListener("submit", (event) => {
     // prevents refresh of page on submit
     event.preventDefault();
-    // continues of formValidation passes
+    // continues if formValidation passes
     if (formValidation() === true) {
       // pulling event targets to be inserted in to object
-      let authorName = event.target.name.value;
-      const currentDate = new Date();
-      let authorDate = currentDate.toLocaleDateString();
-      let authorComment = event.target.comment.value;
-      let authorAvatar = document.querySelector(".comments-form__avatar").src;
+      let newCommentArr = [];
+      axios
+        .post(commentsURL, {
+          name: event.target.name.value,
+          comment: event.target.comment.value,
+        })
+        .then((response) => {
+          newCommentArr.push(response.data);
+          // console.log(newCommentArr);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      // let testArr = [{ hello: "world" }];
+      // console.log(testArr);
+      // let testArr2 = [{ byebye: "radio" }];
+      // console.log(testArr);
+      // testArr2.push(...testArr);
+      // console.log(testArr2);
+      // console.log(newCommentArr);
+      // testArr2.push(...newCommentArr);
+      // console.log(testArr2);
+      // newCommentArr.push(...testArr);
+      // console.log(newCommentArr);
+      // let authorName = event.target.name.value;
+      // const currentDate = new Date();
+      // let authorDate = currentDate.toLocaleDateString();
+      // let authorComment = event.target.comment.value;
+      // let authorAvatar = document.querySelector(".comments-form__avatar").src;
 
       // building new object to be inserted in to array
-      const newComment = {
-        name: authorName,
-        date: authorDate,
-        comment: authorComment,
-        avatar: authorAvatar,
-      };
+      // const newComment = {
+      //   name: authorName,
+      //   date: authorDate,
+      //   comment: authorComment,
+      //   avatar: authorAvatar,
 
       // insert object in to array
-      comments.push(newComment);
-      // clear form
+      // comments.push(newComment);
+      // // clear form
       document.getElementById("comments-form__form").reset();
       // clear posted comments
+
+      axios.get(commentsURL).then((response) => {
+        let comments = response.data;
+        newCommentArr.push(...comments);
+        console.log("newCommentArr: ", newCommentArr);
+        parseArr(newCommentArr);
+      });
+      // clearChildren(postedCommentsSection);
       const postedCommentsSection = document.querySelector(".posted-comments");
       clearChildren(postedCommentsSection);
       //  execute parseArr to sort array and executes displayComments which will re-render comments with newest on top
-      parseArr(comments);
     } else {
       return;
     }
