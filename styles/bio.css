@@ -291,7 +291,6 @@
 }
 .comments-form__submit {
   display: block;
-  cursor: pointer;
 }
 .comments-form__submit-button {
   text-transform: uppercase;
@@ -305,6 +304,7 @@
   background-color: #323232;
   font-family: "Avenir Next";
   border: none;
+  cursor: pointer;
 }
 .comments-form__submit-button:hover {
   background-color: #000000;
@@ -344,7 +344,7 @@
   font-weight: 600;
   color: #323232;
 }
-.comment__date {
+.comment__date, .comment__likes-count {
   display: inline-block;
   font-size: 0.8125rem;
   font-weight: 400;
@@ -355,6 +355,23 @@
   font-size: 0.8125rem;
   font-weight: 400;
   color: #323232;
+  margin-bottom: 1rem;
+}
+.comment__actions-container {
+  display: flex;
+  justify-content: space-between;
+}
+.comment__likes-container {
+  display: flex;
+  gap: 0.25rem;
+}
+.comment__like-button {
+  height: 1rem;
+  cursor: pointer;
+}
+.comment__delete-button {
+  height: 1rem;
+  cursor: pointer;
 }
 
 /* MEDIA QUERY FOR TABLET */
@@ -417,7 +434,6 @@
   }
   .photo-gallery__gallery {
     width: 100%;
-    justify-content: center;
     gap: 1.5rem;
   }
   .photo-gallery__image-container {
@@ -477,7 +493,7 @@
   .comment__name {
     font-size: 0.875rem;
   }
-  .comment__date {
+  .comment__date, .comment__likes-count {
     font-size: 0.875rem;
   }
   .comment__comment {
@@ -527,7 +543,6 @@
   }
   .photo-gallery__gallery {
     width: 100%;
-    justify-content: center;
     gap: 1.375rem;
   }
   .photo-gallery__image-container {
