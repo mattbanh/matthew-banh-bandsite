@@ -1,36 +1,3 @@
-// shows = [
-//   {
-//     date: "Mon Sept 06 2021",
-//     venue: "Ronald Lane",
-//     location: "San Francisco, CA",
-//   },
-//   {
-//     date: "Tue Sept 21 2021",
-//     venue: "Pier 3 East",
-//     location: "San Francisco, CA",
-//   },
-//   {
-//     date: "Fri Oct 15 2021",
-//     venue: "View Lounge",
-//     location: "San Francisco, CA",
-//   },
-//   {
-//     date: "Sat Nov 06 2021",
-//     venue: "Hyatt Agency",
-//     location: "San Francisco, CA",
-//   },
-//   {
-//     date: "Fri Nov 26 2021",
-//     venue: "Moscow Center",
-//     location: "San Francisco, CA",
-//   },
-//   {
-//     date: "Wed Dec 15 2021",
-//     venue: "Press Club",
-//     location: "San Francisco, CA",
-//   },
-// ];
-
 // function to show information before returning to listShows function
 const buildShow = (showDetails, show) => {
   for (const key in showDetails) {
@@ -80,14 +47,6 @@ const listShows = (showDetails) => {
   highlightShow();
 };
 
-// const formatDate = (date) => {
-//   let month = dateLeadingZero(date.getMonth() + 1);
-//   let day = dateLeadingZero(date.getDate());
-//   let year = date.getFullYear();
-//   let formattedDate = month + "/" + day + "/" + year;
-//   return formattedDate;
-// };
-
 // function which converts date from string to date and then sorts array by ascending date
 const sortArrayByDate = (arr) =>
   arr.sort((a, b) => {
@@ -96,6 +55,7 @@ const sortArrayByDate = (arr) =>
     return aDate - bDate;
   });
 
+// format date to be displayed for shows
 const timeOptions = {
   timeZone: "UTC",
   weekday: "short",
@@ -114,7 +74,7 @@ const findTimestamp = (arrObj) => {
     }
   }
 };
-
+// build array from provided from API
 const buildArr = (arr) => {
   showArr = [];
   arr.forEach((arrObj) => {
@@ -145,7 +105,7 @@ const parseArr = (arr) => {
 
 const showsURL =
   "https://project-1-api.herokuapp.com/showdates/?api_key=55efa704-e9f8-4e33-a6e4-da1273101817";
-
+// function to get shows from herokuapp API
 const getShows = () => {
   axios
     .get(showsURL)
@@ -158,12 +118,9 @@ const getShows = () => {
     });
 };
 getShows();
-// parseArr(shows);
 
-// add eventlistener, load, call click,
-
+// Functions below are all for highlighting a show
 // function to remove show-selected class from all and toggle show-selected on click
-
 const addShowSelected = (showList, show, showSelected) => {
   showList.forEach((show) => show.classList.remove("show--selected"));
   showSelected.currentTarget.classList.toggle("show--selected");

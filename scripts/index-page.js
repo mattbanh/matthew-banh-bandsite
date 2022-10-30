@@ -8,7 +8,7 @@ const displayComments = (commentDetails) => {
 
   const commentAvatar = document.createElement("img");
   commentAvatar.classList.add("comment__avatar");
-
+  // Option to add avatar to comments in the future
   if (commentDetails.avatar !== "") {
     commentAvatar.setAttribute("src", commentDetails.avatar);
   } else {
@@ -62,11 +62,11 @@ const displayComments = (commentDetails) => {
 
   const commentActionsContainer = document.createElement("div");
   commentActionsContainer.classList.add("comment__actions-container");
-
+  // create comment actions container
   commentActionsContainer.appendChild(commentLikesContainer);
   commentActionsContainer.appendChild(commentDeleteButton);
 
-  // Place title area and comment in to comment area
+  // Place title area, comment, and comment actions in to comment area
   commentArea.appendChild(commentTitle);
   commentArea.appendChild(comment);
   commentArea.appendChild(commentActionsContainer);
@@ -94,10 +94,10 @@ const sortArrayByDate = (arr) =>
     return aDate - bDate;
   });
 
+// functions for date formatting to be displayed in the comments
 const dateLeadingZero = (date) => {
   return date.toString().padStart(2, "0");
 };
-
 const formatDate = (date) => {
   let month = dateLeadingZero(date.getMonth() + 1);
   let day = dateLeadingZero(date.getDate() + 1);
@@ -105,7 +105,6 @@ const formatDate = (date) => {
   let formattedDate = month + "/" + day + "/" + year;
   return formattedDate;
 };
-
 const findTimestamp = (arrObj) => {
   for (key in arrObj) {
     if (key === "timestamp") {
@@ -116,6 +115,7 @@ const findTimestamp = (arrObj) => {
   }
 };
 
+// function to format objects in array provided form herokuapp API
 const buildArr = (arr) => {
   commentArr = [];
   arr.forEach((arrObj) => {
@@ -126,12 +126,12 @@ const buildArr = (arr) => {
         key === "name" ||
         key === "comment" ||
         key === "id" ||
-        key === "likes" ||
-        key === "avatar"
+        key === "likes"
       ) {
         commentObj[key] = arrObj[key];
       }
     }
+    // option to add avatar in the future
     if (!("avatar" in commentObj) && (commentObj.avatar = {})) {
       commentObj["avatar"] = "";
     }
@@ -140,8 +140,6 @@ const buildArr = (arr) => {
     commentObj.date = commentDate;
     commentArr.push(commentObj);
   });
-  // provide an avatar for the most recent post
-
   return commentArr;
 };
 
@@ -206,14 +204,11 @@ const removeInvalid = () => {
 };
 removeInvalid();
 
-// function which takes submitted comment and adds to comments array,
-// which is then put in to parseArr and displayComments functions to re-render comments
-
-// get comments from herokuapp and pass through to parseArr
-
+// functions using axios and herokuapp API
 const commentsURL =
   "https://project-1-api.herokuapp.com/comments?api_key=55efa704-e9f8-4e33-a6e4-da1273101817";
 
+// post new comment from form
 const postNewComment = (authorName, authorComment) => {
   axios
     .post(commentsURL, {
@@ -228,7 +223,7 @@ const postNewComment = (authorName, authorComment) => {
       console.log(error);
     });
 };
-
+// get comments from herokuapp and pass through to parseArr
 const getComments = () => {
   axios
     .get(commentsURL)
@@ -242,6 +237,7 @@ const getComments = () => {
 };
 getComments();
 
+// delete comment upon clicking delete button
 const deleteComment = (elementId) => {
   axios
     .delete(
@@ -272,9 +268,8 @@ const likeComment = (elementId) => {
     });
 };
 
+// add submit event listener to form, validate and post
 const submitNewComment = () => {
-  // locate comments form and add submit event listener
-
   form.addEventListener("submit", (event) => {
     // prevents refresh of page on submit
     event.preventDefault();
@@ -292,34 +287,22 @@ const submitNewComment = () => {
 };
 submitNewComment();
 
-const addShowSelected = (showList, show, showSelected) => {
-  showList.forEach((show) => show.classList.remove("show--selected"));
-  showSelected.currentTarget.classList.toggle("show--selected");
-};
-
-// function to add click event listener and pass selected elements to addShowSelected
-// const addClickEvent = (show, showList) => {
-//   show.addEventListener("click", (showSelected) =>
-//     addShowSelected(showList, show, showSelected)
-//   );
-// };
-
+// delete comment event listener with delete button
 const deleteClickEvent = (button) => {
   button.addEventListener("click", (event) => deleteComment(event.target.id));
 };
 
-// console.log("hi");
 const deleteElement = () => {
   const deleteButton = document.querySelectorAll(".comment__delete-button");
 
   deleteButton.forEach((button) => deleteClickEvent(button, deleteButton));
 };
 
+// like comment event listener with put and like button
 const likeClickEvent = (button) => {
   button.addEventListener("click", (event) => likeComment(event.target.id));
 };
 
-// console.log("hi");
 const addLike = () => {
   const likeButton = document.querySelectorAll(".comment__like-button");
   likeButton.forEach((button) => likeClickEvent(button));
