@@ -166,7 +166,6 @@
 
   &__submit {
     display: block;
-    cursor: pointer;
   }
   &__submit-button {
     text-transform: uppercase;
@@ -180,6 +179,7 @@
     background-color: colors.$primary-dark;
     font-family: "Avenir Next";
     border: none;
+    cursor: pointer;
     &:hover {
       background-color: colors.$secondary-dark;
     }
@@ -216,7 +216,8 @@
     font-weight: 600;
     color: colors.$primary-dark;
   }
-  &__date {
+  &__date,
+  &__likes-count {
     display: inline-block;
     font-size: 0.8125rem;
     font-weight: 400;
@@ -227,6 +228,24 @@
     font-size: 0.8125rem;
     font-weight: 400;
     color: colors.$primary-dark;
+    margin-bottom: 1rem;
+  }
+  &__actions-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__likes-container {
+    display: flex;
+    gap: 0.25rem;
+  }
+  &__like-button {
+    height: 1rem;
+    cursor: pointer;
+  }
+
+  &__delete-button {
+    height: 1rem;
+    cursor: pointer;
   }
 }
 
@@ -284,13 +303,14 @@
   /* photo gallery section - tablet */
   .photo-gallery {
     padding: 3rem 2.25rem 2.125rem;
+
     &__title {
       font-size: 2.25rem;
       margin-bottom: 1.5rem;
     }
     &__gallery {
       width: 100%;
-      justify-content: center;
+
       gap: 1.5rem;
     }
     &__image-container {
@@ -353,9 +373,11 @@
     &__name {
       font-size: 0.875rem;
     }
-    &__date {
+    &__date,
+    &__likes-count {
       font-size: 0.875rem;
     }
+
     &__comment {
       font-size: 0.875rem;
       line-height: 1.375rem;
@@ -405,7 +427,7 @@
     }
     &__gallery {
       width: 100%;
-      justify-content: center;
+
       gap: 1.375rem;
     }
     &__image-container {

@@ -1,27 +1,3 @@
-comments = [
-  {
-    name: "Connor Walton",
-    date: "02/17/2021",
-    comment:
-      "This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.",
-    avatar: "",
-  },
-  {
-    name: "Emilie Beach",
-    date: "01/09/2021",
-    comment:
-      "I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.",
-    avatar: "",
-  },
-  {
-    name: "Miles Acosta",
-    date: "12/20/2020",
-    comment:
-      "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
-    avatar: "",
-  },
-];
-
 // Create a function which adds comment blocks following a specific structure. Comment blocks will be filled with information from the array above
 const displayComments = (commentDetails) => {
   const commentContainer = document.createElement("div");
@@ -32,6 +8,7 @@ const displayComments = (commentDetails) => {
 
   const commentAvatar = document.createElement("img");
   commentAvatar.classList.add("comment__avatar");
+  // Option to add avatar to comments in the future
   if (commentDetails.avatar !== "") {
     commentAvatar.setAttribute("src", commentDetails.avatar);
   } else {
@@ -54,6 +31,7 @@ const displayComments = (commentDetails) => {
   const commentDate = document.createElement("span");
   commentDate.classList.add("comment__date");
   commentDate.innerText = commentDetails.date;
+
   // Place name and date into title area of comment
   commentTitle.appendChild(commentName);
   commentTitle.appendChild(commentDate);
@@ -62,9 +40,36 @@ const displayComments = (commentDetails) => {
   comment.classList.add("comment__comment");
   comment.innerText = commentDetails.comment;
 
-  // Place title area and comment in to comment area
+  const commentLikesContainer = document.createElement("div");
+  commentLikesContainer.classList.add("comment__likes-container");
+
+  const commentLikeButton = document.createElement("img");
+  commentLikeButton.classList.add("comment__like-button");
+  commentLikeButton.setAttribute("id", commentDetails.id);
+  commentLikeButton.setAttribute("src", "./assets/icons/SVG/icon-like.svg");
+
+  const commentLikesCount = document.createElement("span");
+  commentLikesCount.classList.add("comment__likes-count");
+  commentLikesCount.innerText = commentDetails.likes;
+
+  commentLikesContainer.appendChild(commentLikeButton);
+  commentLikesContainer.appendChild(commentLikesCount);
+
+  const commentDeleteButton = document.createElement("img");
+  commentDeleteButton.classList.add("comment__delete-button");
+  commentDeleteButton.setAttribute("id", commentDetails.id);
+  commentDeleteButton.setAttribute("src", "./assets/icons/SVG/icon-delete.svg");
+
+  const commentActionsContainer = document.createElement("div");
+  commentActionsContainer.classList.add("comment__actions-container");
+  // create comment actions container
+  commentActionsContainer.appendChild(commentLikesContainer);
+  commentActionsContainer.appendChild(commentDeleteButton);
+
+  // Place title area, comment, and comment actions in to comment area
   commentArea.appendChild(commentTitle);
   commentArea.appendChild(comment);
+  commentArea.appendChild(commentActionsContainer);
 
   // Place comment avatar section and comment area in to comment container
   commentContainer.appendChild(commentAvatarSection);
@@ -89,17 +94,68 @@ const sortArrayByDate = (arr) =>
     return aDate - bDate;
   });
 
-// function which sends pieces of array to another function
-const parseArr = (arr) => {
-  let sortedArray = sortArrayByDate(arr);
-  // loops through array and sends objects to function which will render the comments
-  for (let i = 0; i < arr.length; i++) {
-    displayComments(arr[i]);
+// functions for date formatting to be displayed in the comments
+const dateLeadingZero = (date) => {
+  return date.toString().padStart(2, "0");
+};
+const formatDate = (date) => {
+  let month = dateLeadingZero(date.getMonth() + 1);
+  let day = dateLeadingZero(date.getDate() + 1);
+  let year = date.getFullYear();
+  let formattedDate = month + "/" + day + "/" + year;
+  return formattedDate;
+};
+const findTimestamp = (arrObj) => {
+  for (key in arrObj) {
+    if (key === "timestamp") {
+      const date = new Date(arrObj[key]);
+      const formattedDate = formatDate(date);
+      return formattedDate;
+    }
   }
 };
 
-// call the parseArr function to sort and post comments
-parseArr(comments);
+// function to format objects in array provided form herokuapp API
+const buildArr = (arr) => {
+  commentArr = [];
+  arr.forEach((arrObj) => {
+    let commentObj = {};
+    for (key in arrObj) {
+      // console.log(key);
+      if (
+        key === "name" ||
+        key === "comment" ||
+        key === "id" ||
+        key === "likes"
+      ) {
+        commentObj[key] = arrObj[key];
+      }
+    }
+    // option to add avatar in the future
+    if (!("avatar" in commentObj) && (commentObj.avatar = {})) {
+      commentObj["avatar"] = "";
+    }
+
+    let commentDate = findTimestamp(arrObj);
+    commentObj.date = commentDate;
+    commentArr.push(commentObj);
+  });
+  return commentArr;
+};
+
+// function which sends pieces of array to another function
+const parseArr = (arr) => {
+  const postedCommentsSection = document.querySelector(".posted-comments");
+  clearChildren(postedCommentsSection);
+  let commentArr = buildArr(arr);
+  let sortedArr = sortArrayByDate(commentArr);
+  // loops through array and sends objects to function which will render the comments
+  for (let i = 0; i < sortedArr.length; i++) {
+    displayComments(sortedArr[i]);
+  }
+  addLike();
+  deleteElement();
+};
 
 // function to clear children from a parent element
 const clearChildren = (parentElement) => {
@@ -148,42 +204,106 @@ const removeInvalid = () => {
 };
 removeInvalid();
 
-// function which takes submitted comment and adds to comments array,
-// which is then put in to parseArr and displayComments functions to re-render comments
-const addNewComment = () => {
-  // locate comments form and add submit event listener
+// functions using axios and herokuapp API
+const commentsURL =
+  "https://project-1-api.herokuapp.com/comments?api_key=55efa704-e9f8-4e33-a6e4-da1273101817";
+
+// post new comment from form
+const postNewComment = (authorName, authorComment) => {
+  axios
+    .post(commentsURL, {
+      name: authorName,
+      comment: authorComment,
+    })
+    .then((response) => {
+      getComments();
+      // commentArr[arr.length - 1].avatar = "./assets/images/Mohan-muruge.jpg";
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+// get comments from herokuapp and pass through to parseArr
+const getComments = () => {
+  axios
+    .get(commentsURL)
+    .then((response) => {
+      let comments = response.data;
+      parseArr(comments);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+getComments();
+
+// delete comment upon clicking delete button
+const deleteComment = (elementId) => {
+  axios
+    .delete(
+      `https://project-1-api.herokuapp.com/comments/${elementId}?api_key=55efa704-e9f8-4e33-a6e4-da1273101817`
+    )
+    .then((response) => {
+      if (response.status === 200) {
+        getComments();
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+const likeComment = (elementId) => {
+  axios
+    .put(
+      `https://project-1-api.herokuapp.com/comments/${elementId}/like?api_key=55efa704-e9f8-4e33-a6e4-da1273101817`
+    )
+    .then((response) => {
+      if (response.status === 200) {
+        getComments();
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+// add submit event listener to form, validate and post
+const submitNewComment = () => {
   form.addEventListener("submit", (event) => {
     // prevents refresh of page on submit
     event.preventDefault();
-    // continues of formValidation passes
+    // continues if formValidation passes
     if (formValidation() === true) {
-      // pulling event targets to be inserted in to object
-      let authorName = event.target.name.value;
-      const currentDate = new Date();
-      let authorDate = currentDate.toLocaleDateString();
-      let authorComment = event.target.comment.value;
-      let authorAvatar = document.querySelector(".comments-form__avatar").src;
-
-      // building new object to be inserted in to array
-      const newComment = {
-        name: authorName,
-        date: authorDate,
-        comment: authorComment,
-        avatar: authorAvatar,
-      };
-
-      // insert object in to array
-      comments.push(newComment);
+      const authorName = event.target.name.value;
+      const authorComment = event.target.comment.value;
+      postNewComment(authorName, authorComment);
       // clear form
       document.getElementById("comments-form__form").reset();
-      // clear posted comments
-      const postedCommentsSection = document.querySelector(".posted-comments");
-      clearChildren(postedCommentsSection);
-      //  execute parseArr to sort array and executes displayComments which will re-render comments with newest on top
-      parseArr(comments);
     } else {
       return;
     }
   });
 };
-addNewComment();
+submitNewComment();
+
+// delete comment event listener with delete button
+const deleteClickEvent = (button) => {
+  button.addEventListener("click", (event) => deleteComment(event.target.id));
+};
+
+const deleteElement = () => {
+  const deleteButton = document.querySelectorAll(".comment__delete-button");
+
+  deleteButton.forEach((button) => deleteClickEvent(button, deleteButton));
+};
+
+// like comment event listener with put and like button
+const likeClickEvent = (button) => {
+  button.addEventListener("click", (event) => likeComment(event.target.id));
+};
+
+const addLike = () => {
+  const likeButton = document.querySelectorAll(".comment__like-button");
+  likeButton.forEach((button) => likeClickEvent(button));
+};

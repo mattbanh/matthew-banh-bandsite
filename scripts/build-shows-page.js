@@ -1,36 +1,3 @@
-shows = [
-  {
-    date: "Mon Sept 06 2021",
-    venue: "Ronald Lane",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Tue Sept 21 2021",
-    venue: "Pier 3 East",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Fri Oct 15 2021",
-    venue: "View Lounge",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Sat Nov 06 2021",
-    venue: "Hyatt Agency",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Fri Nov 26 2021",
-    venue: "Moscow Center",
-    location: "San Francisco, CA",
-  },
-  {
-    date: "Wed Dec 15 2021",
-    venue: "Press Club",
-    location: "San Francisco, CA",
-  },
-];
-
 // function to show information before returning to listShows function
 const buildShow = (showDetails, show) => {
   for (const key in showDetails) {
@@ -50,8 +17,6 @@ const buildShow = (showDetails, show) => {
     showInfo.innerText = showDetails[key];
     show.appendChild(showInfo);
   }
-  // return show with show information to be listed on website
-  return show;
 };
 
 // function to list shows on shows page
@@ -79,6 +44,7 @@ const listShows = (showDetails) => {
   // find and append show HTML to show page so it can be displayed
   const showsList = document.querySelector(".shows-list");
   showsList.appendChild(show);
+  highlightShow();
 };
 
 // function which converts date from string to date and then sorts array by ascending date
@@ -89,17 +55,71 @@ const sortArrayByDate = (arr) =>
     return aDate - bDate;
   });
 
+// format date to be displayed for shows
+const timeOptions = {
+  timeZone: "UTC",
+  weekday: "short",
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+};
+
+const findTimestamp = (arrObj) => {
+  for (key in arrObj) {
+    if (key === "date") {
+      const date = new Date(arrObj[key]);
+      const convertedDate = date.toLocaleString("en-CA", timeOptions);
+      formattedDate = convertedDate.replaceAll(",", "");
+      return formattedDate;
+    }
+  }
+};
+// build array from provided from API
+const buildArr = (arr) => {
+  showArr = [];
+  arr.forEach((arrObj) => {
+    let showObj = {};
+    for (key in arrObj) {
+      // console.log(key);
+      if (key === "date" || key === "location") {
+        showObj[key] = arrObj[key];
+      } else if (key === "place") {
+        showObj["venue"] = arrObj[key];
+      }
+    }
+    let showDate = findTimestamp(arrObj);
+    showObj.date = showDate;
+    showArr.push(showObj);
+  });
+  return showArr;
+};
+
 // function which sends pieces of array to another function
 const parseArr = (arr) => {
-  let sortedArray = sortArrayByDate(arr);
-  for (let i = 0; i < arr.length; i++) {
-    listShows(arr[i]);
+  let builtArr = buildArr(arr);
+  let sortedArr = sortArrayByDate(builtArr);
+  for (let i = 0; i < sortedArr.length; i++) {
+    listShows(sortedArr[i]);
   }
 };
 
-// call the parseArr function to sort and list shows
-parseArr(shows);
+const showsURL =
+  "https://project-1-api.herokuapp.com/showdates/?api_key=55efa704-e9f8-4e33-a6e4-da1273101817";
+// function to get shows from herokuapp API
+const getShows = () => {
+  axios
+    .get(showsURL)
+    .then((response) => {
+      let shows = response.data;
+      parseArr(shows);
+    })
+    .catch((response) => {
+      console.log("error");
+    });
+};
+getShows();
 
+// Functions below are all for highlighting a show
 // function to remove show-selected class from all and toggle show-selected on click
 const addShowSelected = (showList, show, showSelected) => {
   showList.forEach((show) => show.classList.remove("show--selected"));
@@ -118,4 +138,3 @@ const highlightShow = () => {
   const showList = document.querySelectorAll(".show");
   showList.forEach((show) => addClickEvent(show, showList));
 };
-highlightShow();
